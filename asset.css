@@ -46,10 +46,12 @@ body{
     background-color: #001f5b;
     color: white;
     text-align: center;
-    padding: 150px;
+    padding: 50px;
     height: 500px;
     font-size: xx-large;
     z-index: 1;
+    background-size: cover;
+    
 }
 
 .top::before {
@@ -83,16 +85,49 @@ body{
 .features{
     padding:30px;
     text-align:center;
+   
 }
-
+#fea{
+     font-size: 45px;
+}
+#para{
+    color: #69698b;
+}
 .card{
     background:white;
-    margin:10px auto;
+    margin:80px auto;
     padding:15px;
     width:250px;
     border:1px solid gray;
+    height: 200px;
+    border-radius: 30px;
+   border-color: #f1f1f7;
+   p{
+    padding: 20px;
+    color: #767677;
+   
+   }
+    box-shadow: 5px 5px 10px rgb(230, 223, 223);
 }
-
+#c1{
+  position: absolute;
+  margin-left: 30px;
+}
+#c2{
+    position: relative;
+    margin-left: 330px;
+    position: absolute;
+}
+#c3{
+    position: relative;
+    margin-left: 630px;
+   position: absolute;
+}
+#c4{
+    position: relative;
+    margin-left: 930px;
+    
+}
 .info{
     padding:30px;
     text-align:center;
@@ -102,12 +137,7 @@ body{
     margin:10px 0;
 }
 
-.footer{
-    background:#001f5b;
-    color:white;
-    padding:15px;
-    text-align:center;
-}
+
 #btn{
    height: 30px;
    width: 80px;
@@ -116,4 +146,54 @@ body{
    /* background-color: blue; */
     background-color: rgb(62, 10, 252);
    border: #36cfda;
+}
+#atext{
+    margin-left: 0px;
+    margin-top: 100px;
+}
+.why{
+    font-size: 20px;
+    margin-left: 20px;
+    width: 500px;
+    p:first-child{
+        margin-top: 20px;
+        color: #767677;
+        font-size: 15px;
+    }
+    p{
+        margin-top: 10px;
+        color: #767677;
+        font-size: 15px;
+        margin-left: 20px;
+    }
+    h5{
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+    i{
+        color: rgb(56, 192, 97);
+        
+    }
+}
+.footer{
+    background:#001f5b;
+    color:white;
+    padding:15px;
+    text-align:center;
+    height: 300px;
+    margin-top: 50px;
+    p{
+        margin-top: 10px;
+    }
+
+    #follow{
+        margin-top: 40px;
+        font-size: 20px;
+        position: relative;
+        align-items: center;
+        a{
+           padding: 20px;
+           display:inline;
+        }
+    }
 }

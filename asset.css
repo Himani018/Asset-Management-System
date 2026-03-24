@@ -7,7 +7,7 @@
 }
 
 body{
-    background:#f4f6f9;
+    background:#ffffff;
 }
 
 .navbar{
@@ -19,12 +19,13 @@ body{
     position: fixed;  /* keeps navbar always visible */
     width: 100%;
     z-index: 1000
-   
+    
 }
 
 .logo{
     font-weight:bold;
     color:blue;
+    
 }
 
 .nav-links a{
@@ -34,6 +35,7 @@ body{
 }
  #home:hover {
       color: rgb(55, 0, 255);
+      
     }
  #about:hover {
       color: rgb(0, 26, 255);
@@ -94,7 +96,8 @@ body{
     color: #69698b;
 }
 .card{
-    background:white;
+    color: #1E3A8A;
+    background: #E6F0FF;
     margin:80px auto;
     padding:15px;
     width:250px;
@@ -102,31 +105,51 @@ body{
     height: 200px;
     border-radius: 30px;
    border-color: #f1f1f7;
+   justify-content: center;
    p{
     padding: 20px;
-    color: #767677;
+    color:#475569;
    
    }
-    box-shadow: 5px 5px 10px rgb(230, 223, 223);
+    box-shadow: 0 4px 8px rgba(30, 58, 138, 0.1);
+    cursor:pointer;
 }
 #c1{
   position: absolute;
   margin-left: 30px;
+  
+}
+#c1:hover{
+    
+    transform: scale(1.1);
+    transition: 0.3s ease;
 }
 #c2{
     position: relative;
     margin-left: 330px;
     position: absolute;
 }
+#c2:hover{
+     transform: scale(1.1);
+     transition: 0.3s ease;
+}
 #c3{
     position: relative;
     margin-left: 630px;
    position: absolute;
 }
+#c3:hover{
+    transform: scale(1.1);
+    transition: 0.3s ease;
+}
 #c4{
     position: relative;
     margin-left: 930px;
     
+}
+#c4:hover{
+  transform: scale(1.1);
+  transition: 0.3s ease;
 }
 .info{
     padding:30px;
@@ -143,9 +166,16 @@ body{
    width: 80px;
    border-radius: 13px;
    color: #f4f4f9;
-   /* background-color: blue; */
-    background-color: rgb(62, 10, 252);
-   border: #36cfda;
+   background-color: rgb(62, 10, 252);
+   border: #1e06f3;
+  
+}
+#btn:hover{
+    box-shadow: 
+    0 4px 10px rgba(30, 144, 255, 0.3),
+    0 0 8px rgba(30, 144, 255, 0.4),
+    0 0 16px rgba(30, 144, 255, 0.4);
+  transform: scale(1.05); 
 }
 #atext{
     margin-left: 0px;
@@ -197,3 +227,20 @@ body{
         }
     }
 }
+/* logo css */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-icon {
+  width: 45px;   /* 🔥 controls size */
+  height: 40px;
+}
+
+.logo-text {
+  font-weight: 600;
+  color: blue;
+}
+/* logo css */

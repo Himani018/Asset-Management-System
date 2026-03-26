@@ -1,0 +1,83 @@
+
+:root {
+    --primary: #2563eb;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    background: #f1f5f9;
+    padding: 20px;
+}
+
+.sidebar h4 {
+    color: var(--primary);
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.sidebar a:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.main {
+    flex: 1;
+    padding: 20px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile {
+    position: relative;
+    cursor: pointer;
+}
+
+.profile-menu {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: none;
+    width: 150px;
+}
+
+.profile-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.profile-menu a:hover {
+    background: #f1f5f9;
+}
+
+.table thead {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary {
+    background: var(--primary);
+    border: none;
+}

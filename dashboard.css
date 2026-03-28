@@ -39,7 +39,7 @@ body {
 }
 
 .topbar {
-    display: flex;
+    display:flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -77,7 +77,19 @@ body {
     color: white;
 }
 
-.btn-primary {
+.btn-primary ,.pdf {
     background: var(--primary);
     border: none;
+}
+.pdf{
+    color: white;
+    position: relative;
+    margin-left: 150px;
+    display:block;
+    margin-top: 10px;
+  
+}
+.pdf:hover{
+        background-color: #114cca;
+        color: white;
 }

@@ -93,3 +93,19 @@ body {
         background-color: #114cca;
         color: white;
 }
+#asset-sec{
+    display: none;
+}
+#dash-sec{
+    display: block;
+}
+#user-sec{
+    display: none;
+}
+#repo-sec{
+    display: none;
+}
+#sett-sec{
+    display: none;
+}
+

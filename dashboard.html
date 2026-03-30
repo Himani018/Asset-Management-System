@@ -16,18 +16,23 @@
 <!-- Sidebar -->
 <div class="sidebar">
     <h4><i class="fa-solid fa-box-archive"></i> BlueVault Asset</h4>
-    <a href="#"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-    <a href="#"><i class="fa-solid fa-box"></i> Assets</a>
-    <a href="#"><i class="fa-solid fa-users"></i> Users</a>
-    <a href="#"><i class="fa-solid fa-file"></i> Reports</a>
-    <a href="#"><i class="fa-solid fa-gear"></i> Settings</a>
+    <a href="#dash-sec" id="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+    <a href="#asset-sec" id="asset"><i class="fa-solid fa-box"></i> Assets</a>
+    <a href="#user-sec" id="user"> <i class="fa-solid fa-users"></i> Users</a>
+    <a href="#repo-sec" id="report"><i class="fa-solid fa-file"></i> Reports</a>
+    <a href="#sett-sec" id="setting"><i class="fa-solid fa-gear"></i> Settings</a>
 </div>
 
 <!-- Main -->
 <div class="main">
 
     <!-- Topbar -->
-    <div class="topbar">
+   <div id="dash-sec">
+      <h2>dashboard sec</h2>
+  </div>
+  
+   <div id="asset-sec">
+          <div class="topbar">
         <input type="text" class="form-control w-50" placeholder="Search...">
          <button onclick="generatePDF()" class="btn pdf mb-3">Download As PDF</button>
         <div class="profile" onclick="toggleMenu()">
@@ -76,10 +81,25 @@
         </tbody>
     </table>
    </div>
-  
-</div>
+  </div>
 
+  <div id="user-sec">
+        <h2>user secion </h2>
+  </div>
+
+  <div id="repo-sec">
+        <h2>report secion </h2>
+  </div>
+
+  <div id="sett-sec">
+        <h2>setting secion </h2>
+  </div>
+
+</div>
+  
+  
 </body>
+  <script src="dashboard.js"></script>
  <script>
     function generatePDF(){
         const pdf =document.getElementById("pdf");

@@ -71,7 +71,9 @@ assetlink.addEventListener('click',function(e){
     userSec.style.display="none";
     repoSec.style.display="none";
     settSec.style.display="none";
-    assetlink.style.backgroundColor=" rgb(215, 221, 243)";
+    assetlink.style.backgroundColor=" rgb(84, 205, 253)";
+    assetlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    assetlink.style.color="white";
  })
  dashlink.addEventListener('click',function(e){
     e.preventDefault();
@@ -81,7 +83,9 @@ assetlink.addEventListener('click',function(e){
     userSec.style.display="none";
     repoSec.style.display="none";
     settSec.style.display="none";
-    dashlink.style.backgroundColor=" rgb(215, 221, 243)";
+    dashlink.style.backgroundColor=" rgb(84, 205, 253)";
+    dashlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    dashlink.style.color="white";
  })
  userlink.addEventListener('click',function(e){
     e.preventDefault();
@@ -91,7 +95,9 @@ assetlink.addEventListener('click',function(e){
     assetSec.style.display="none";
     repoSec.style.display="none";
     settSec.style.display="none";
-    userlink.style.backgroundColor=" rgb(215, 221, 243)";
+    userlink.style.backgroundColor=" rgb(84, 205, 253)";
+    userlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    userlink.style.color="white";
  })
  repolink.addEventListener('click',function(e){
     e.preventDefault();
@@ -101,7 +107,9 @@ assetlink.addEventListener('click',function(e){
     assetSec.style.display="none";
     userSec.style.display="none";
     settSec.style.display="none";
-    repolink.style.backgroundColor=" rgb(215, 221, 243)";
+    repolink.style.backgroundColor=" rgb(84, 205, 253)";
+    repolink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    repolink.style.color="white";
  })
  settlink.addEventListener('click',function(e){
     e.preventDefault();
@@ -111,12 +119,28 @@ assetlink.addEventListener('click',function(e){
     assetSec.style.display="none";
     userSec.style.display="none";
     repoSec.style.display="none";
-    settlink.style.backgroundColor=" rgb(215, 221, 243)";
+    settlink.style.backgroundColor=" rgb(84, 205, 253)";
+    settlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    settlink.style.color="white";
  })
  function removeBackColor(){
     dashlink.style.backgroundColor="";
+    dashlink.style.color="black";
+    dashlink.style.boxShadow="";
+    
     assetlink.style.backgroundColor="";
+    assetlink.style.color="black";
+    assetlink.style.boxShadow="";
+
     repolink.style.backgroundColor="";
+    repolink.style.color="black";
+    repolink.style.boxShadow="";
+
     userlink.style.backgroundColor="";
+    userlink.style.color="black";
+    userlink.style.boxShadow="";
+
     settlink.style.backgroundColor="";
+    settlink.style.color="black";
+    settlink.style.boxShadow="";
  }

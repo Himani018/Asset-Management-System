@@ -28,22 +28,25 @@
 
     <!-- Topbar -->
    <div id="dash-sec">
-      <h2>dashboard sec</h2>
-  </div>
-  
-   <div id="asset-sec">
-          <div class="topbar">
-        <input type="text" class="form-control w-50" placeholder="Search...">
-         <button onclick="generatePDF()" class="btn pdf mb-3">Download As PDF</button>
-        <div class="profile" onclick="toggleMenu()">
+      
+       <div class="profile" onclick="toggleMenu()">
             <i class="fa-solid fa-user-circle fa-2x"></i>
-            <span id="userName"></span>
+            
 
             <div class="profile-menu" id="menu">
                 <a href="#"><i class="fa fa-user"></i> Profile</a>
                 <a href="#" onclick="logout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>
+
+
+  </div>
+  
+   <div id="asset-sec">
+          <div class="topbar">
+        <input type="text" class="form-control w-50" placeholder="Search...">
+         <button onclick="generatePDF()" class="btn pdf mb-3">Download As PDF</button>
+       
     </div>
 
     <!-- Add Button -->

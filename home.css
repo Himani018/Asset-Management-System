@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
 *{
     margin:0;
     padding:0;
@@ -114,13 +114,14 @@ body{
     padding:15px;
     width:250px;
     border:1px solid gray;
-    height: 200px;
+    height: 250px;
     border-radius: 30px;
    border-color: #f1f1f7;
    justify-content: center;
    p{
     padding: 20px;
     color:#475569;
+    margin-top: 30px;
    
    }
     box-shadow: 0 4px 8px rgba(30, 58, 138, 0.1);
@@ -183,11 +184,9 @@ body{
   
 }
 #btn:hover{
-    box-shadow: 
-    0 4px 10px rgba(30, 144, 255, 0.3),
-    0 0 8px rgba(30, 144, 255, 0.4),
-    0 0 16px rgba(30, 144, 255, 0.4);
-  transform: scale(1.05); 
+    box-shadow: 0 0 10px rgb(161, 161, 240);
+         
+    transition: 0.3s ease;
 }
 #atext{
     margin-left: 0px;
@@ -240,3 +239,34 @@ body{
     }
 }
 
+#meter{
+    position: absolute;
+    margin-left: 55%;
+    background-color: rgb(230, 245, 242);
+    width: 500px;
+    border-radius: 30px;
+    height: 400px;
+
+}
+.meter-card{
+    box-shadow: 0 0 5px rgb(255, 255, 255);
+    font-family:monospace;
+    background-color: #ffffff;
+     width: 430px;
+     text-align: center;
+     height: 80px;
+     border-radius: 10px;
+     margin-left: 30px;
+     margin-top: 40px;
+     font-size:15px;
+     text-align: left;
+     padding: 20px;
+     meter{
+        width: 400px;
+        
+     }
+     meter::-webkit-meter-optimum-value {
+        
+          background: linear-gradient(to right, #4facfe, #00f2fe);
+     }
+}

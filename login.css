@@ -9,7 +9,7 @@ body {
   font-family: "Inter", sans-serif;
 
 
-  background: linear-gradient(135deg, #5ec2d6 0%, #4aa3d3 40%, #4a7df0 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 40%, #ffffff 100%);
 
   display: flex;
   justify-content: center;
@@ -26,7 +26,7 @@ body {
   border-radius: 50px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   position: relative;
-  box-shadow: 0 0 10px rgb(216, 216, 248);
+  box-shadow: 0 0 10px rgb(159, 159, 160);
 }
 
 .logo {

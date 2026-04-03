@@ -44,9 +44,10 @@ window.onload = function() {
 
 // Logout
 function logout() {
-    localStorage.removeItem("username");
     alert("Logged out successfully!");
+    window.location.href='home.html';
 }
+
 
 const dashlink =document.getElementById('dashboard');
 const dashSec =document.getElementById('dash-sec');
@@ -123,6 +124,17 @@ assetlink.addEventListener('click',function(e){
     settlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
     settlink.style.color="white";
  })
+ function profile(){
+    removeBackColor();
+    settSec.style.display="block";
+    dashSec.style.display="none";
+    assetSec.style.display="none";
+    userSec.style.display="none";
+    repoSec.style.display="none";
+    settlink.style.backgroundColor=" rgb(84, 205, 253)";
+    settlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    settlink.style.color="white";
+}
  function removeBackColor(){
     dashlink.style.backgroundColor="";
     dashlink.style.color="black";

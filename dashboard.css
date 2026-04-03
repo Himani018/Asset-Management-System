@@ -2,12 +2,14 @@
 :root {
     --primary: #f7f8fa;
     --secondary:rgb(37, 152, 197);
+    --third:#e8f7f3;
 }
 
 body {
     display: flex;
     height: 100vh;
     font-family: Arial, sans-serif;
+    background-color: var(--third);
 }
 
 .sidebar {
@@ -122,4 +124,11 @@ body {
 }
 .form-control:hover{
     border-color: #2563eb;
+}
+.set-card{
+    background-color: #ffffff;
+    height: 550px;
+    width: 450px;
+    border-radius: 30px;
+    box-shadow: inset;
 }

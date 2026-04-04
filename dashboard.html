@@ -47,7 +47,7 @@
 
         <div id="asset-sec">
             <div class="topbar">
-                <input type="text" class="form-control w-50" placeholder="Search...">
+                <input type="text" class="form-control w-50" placeholder="Search asset by id...">
                 <button onclick="generatePDF()" class="btn pdf mb-3">Download As PDF</button>
 
             </div>
@@ -70,14 +70,37 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-
-                    <tbody id="assetTable">
+                     
+<tbody id="assetTable">
+                        <tr id="1">
+                            <td>1</td>
+                            <td>Laptop Pro</td>
+                            <td>Electronic</td>
+                            <td>John Doe</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                        </tr>
+                        <tr id="2">
+                            <td>2</td>
+                            <td>Office Chair</td>
+                            <td>furniture</td>
+                            <td>Jane Smith</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                        </tr>
+                        <tr id="3">
+                            <td>3</td>
+                            <td>Mouse Pad</td>
+                            <td>accessories</td>
+                            <td>Bob Wilson</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                        </tr>
                     </tbody>
+
                 </table>
             </div>
-        <div id="noasset">
+<div id="noasset" style="display:none;">
             
             <p>No asset Found 😟</p>
+
             <p>There are no asset available at this moment !!</p>
             <p ><i class="fa-solid fa-box-open"></i> </p>
         </div> 
@@ -88,10 +111,39 @@
             <h2>user secion </h2>
         </div>
 
+
         <div id="repo-sec">
-            <h2>report secion </h2>
+            <h2>Asset Report</h2>
+            <p>Choose how you want to generate the report</p>
+<select name="" id="select">
+                <option value="ALL">ALL</option>
+                <option value="Electronic">Electronic</option>
+                <option value="furniture">furniture</option>
+                <option value="accessories">accessories</option>
+            </select>
+            <button class="btn btn-primary mb-3" style="position: absolute; margin-left: 5px;" onclick="openReport()">Generate</button>
+            <div id="report">
+                       <div id="pdf">
+                <!-- Table -->
+                <table class="table table-bordered" style="margin-top: 40px;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Assignee</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                        
+                    <tbody id="repoTable">
+                    </tbody>
+                </table>
+            </div>
+            </div>
         </div>
 
+        
         <div id="sett-sec">
             <div class="set-card">
                   

@@ -191,3 +191,21 @@ function editAsset(){
     row.cells[2].innerHTML=category;
     row.cells[3].innerHTML=assignee;
 }
+function openReport(){
+
+    document.getElementById("asset-sec").style.display="none";
+    document.getElementById("repo-sec").style.display="block";
+    let tableA=document.getElementById("assetTable");
+    let tableR =document.getElementById("repoTable");
+    let selected = document.getElementById("select").value ;
+    tableR.innerHTML = ''; //taki new time click krne par row vapis se ayye naki pichle wali row mai appned ho
+    
+    for(let i =0 ; i<tableA.rows.length ;i++){
+        let cellValue = tableA.rows[i].cells[2].innerText;
+
+        if(selected === "ALL" || cellValue === selected){
+            tableR.innerHTML += tableA.rows[i].outerHTML;
+        }
+    }
+    
+}

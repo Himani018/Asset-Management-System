@@ -71,7 +71,7 @@
                         </tr>
                     </thead>
                      
-<tbody id="assetTable">
+          <tbody id="assetTable">
                         <tr id="1">
                             <td>1</td>
                             <td>Laptop Pro</td>
@@ -88,6 +88,27 @@
                         </tr>
                         <tr id="3">
                             <td>3</td>
+                            <td>Mouse Pad</td>
+                            <td>accessories</td>
+                            <td>Bob Wilson</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                        </tr>
+                        <tr id="4">
+                            <td>4</td>
+                            <td>Mouse Pad</td>
+                            <td>accessories</td>
+                            <td>Bob Wilson</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                        </tr>
+                        <tr id="5">
+                            <td>5</td>
+                            <td>Mouse Pad</td>
+                            <td>accessories</td>
+                            <td>Bob Wilson</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                        </tr>
+                        <tr id="6">
+                            <td>6</td>
                             <td>Mouse Pad</td>
                             <td>accessories</td>
                             <td>Bob Wilson</td>
@@ -113,6 +134,9 @@
 
 
         <div id="repo-sec">
+            <div id="p">
+                 <button onclick="generatePDF2()" class="btn pdf mb-3" id="pdf2">Download As PDF</button>
+            </div>
             <h2>Asset Report</h2>
             <p>Choose how you want to generate the report</p>
 <select name="" id="select">
@@ -122,8 +146,10 @@
                 <option value="accessories">accessories</option>
             </select>
             <button class="btn btn-primary mb-3" style="position: absolute; margin-left: 5px;" onclick="openReport()">Generate</button>
+           
             <div id="report">
-                       <div id="pdf">
+                <div id="pdf2">
+
                 <!-- Table -->
                 <table class="table table-bordered" style="margin-top: 40px;">
                     <thead>
@@ -139,6 +165,7 @@
                     <tbody id="repoTable">
                     </tbody>
                 </table>
+
             </div>
             </div>
         </div>
@@ -158,6 +185,10 @@
 <script>
     function generatePDF() {
         const pdf = document.getElementById("pdf");
+        html2pdf().from(pdf).save();
+    }
+    function generatePDF2() {
+        const pdf = document.getElementById("pdf2");
         html2pdf().from(pdf).save();
     }
 </script>

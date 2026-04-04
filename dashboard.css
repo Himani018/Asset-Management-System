@@ -165,13 +165,16 @@ body {
     transition:all 0.2s ease;
 }
 
-/* hover */
 #select:hover{
     border-color:#2196f3;
 }
 
-/* focus */
 #select:focus{
     border-color:#2196f3;
     box-shadow:0 0 0 2px rgba(33,150,243,0.15);
+}
+#p{
+    position:absolute;
+    margin-top: 10px; 
+    margin-left: 650px;
 }

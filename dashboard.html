@@ -54,6 +54,8 @@
 
             <!-- Add Button -->
             <button class="btn btn-primary mb-3" onclick="addAsset()">+ Add Asset</button>
+            <button class="btn btn-primary mb-3" onclick="deleteAsset()">- Delete Asset</button>
+            <button class="btn btn-primary mb-3" onclick="editAsset()">* Edit Asset</button>
 
 
             <div id="pdf">
@@ -70,23 +72,15 @@
                     </thead>
 
                     <tbody id="assetTable">
-                        <tr>
-                            <td>AST-001</td>
-                            <td>Dell Laptop</td>
-                            <td>Laptop</td>
-                            <td>Sarah</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                        </tr>
-                        <tr>
-                            <td>AST-002</td>
-                            <td>Printer</td>
-                            <td>Printer</td>
-                            <td>Mike</td>
-                            <td><span class="badge bg-warning">Maintenance</span></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
+        <div id="noasset">
+            
+            <p>No asset Found 😟</p>
+            <p>There are no asset available at this moment !!</p>
+            <p ><i class="fa-solid fa-box-open"></i> </p>
+        </div> 
 
         </div>
 

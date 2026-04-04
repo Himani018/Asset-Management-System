@@ -18,9 +18,21 @@ function addAsset() {
 
     let table = document.getElementById("assetTable");
 
+    let newId = 1; 
+    if(table.rows.length<1){
+       let starting = document.getElementById("noasset");
+       starting.style.display='none';
+    }
+    if (table.rows.length > 1) {
+        let lastRow = table.rows[table.rows.length - 1];
+        let lastId = lastRow.cells[0].innerText; // first column
+
+        newId = parseInt(lastId) + 1;
+    }
+
     let newRow = `
-        <tr>
-            <td>AST-${Math.floor(Math.random()*1000)}</td>
+        <tr id ='${newId}'>
+            <td>${newId}</td>
             <td>${name}</td>
             <td>${category}</td>
             <td>${assignee}</td>
@@ -31,18 +43,7 @@ function addAsset() {
     table.innerHTML += newRow;
 }
 
-// Load username
-window.onload = function() {
-    let name = localStorage.getItem("username");
 
-    if(name) {
-        document.getElementById("userName").innerText = name;
-    } else {
-        document.getElementById("userName").innerText = "User";
-    }
-}
-
-// Logout
 function logout() {
     alert("Logged out successfully!");
     window.location.href='home.html';
@@ -155,4 +156,19 @@ assetlink.addEventListener('click',function(e){
     settlink.style.backgroundColor="";
     settlink.style.color="black";
     settlink.style.boxShadow="";
+ }
+
+function deleteAsset(){
+     let table = document.getElementById("assetTable");
+    let del =prompt("Enter the asset id you want to delete");
+    let delrow = document.getElementById(del);
+    if(delrow){
+        delrow.remove();
+    }
+    if(table.rows.length==0){
+       setTimeout(()=>{
+         let starting = document.getElementById("noasset");
+         starting.style.display='block';
+       },2000);
+    }
  }

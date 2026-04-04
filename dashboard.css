@@ -132,3 +132,23 @@ body {
     border-radius: 30px;
     box-shadow: inset;
 }
+#noasset p:nth-child(1){
+    display: block;
+    margin-left: 350px;
+    font-size: x-large;
+    color: rgb(253, 106, 87);
+}
+#noasset p:nth-child(2){
+    margin-left: 300px;
+    /* font-size:100px; */
+    color:#6c8fa3;
+    /* margin-top: 80px; */
+
+}
+#noasset p:nth-child(3){
+    margin-left: 380px;
+    font-size:100px;
+    color:#6c8fa3;
+    margin-top: 50px;
+
+}

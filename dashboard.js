@@ -18,14 +18,16 @@ function addAsset() {
 
     let table = document.getElementById("assetTable");
 
-    let newId = 1; 
+    let newId = 1;
+    //ye banaya taki asset add krne ke baad ye hat jaye  
     if(table.rows.length<1){
        let starting = document.getElementById("noasset");
        starting.style.display='none';
     }
-    if (table.rows.length > 1) {
+
+    if (table.rows.length >= 1) {
         let lastRow = table.rows[table.rows.length - 1];
-        let lastId = lastRow.cells[0].innerText; // first column
+        let lastId = lastRow.cells[0].innerText;
 
         newId = parseInt(lastId) + 1;
     }
@@ -159,7 +161,7 @@ assetlink.addEventListener('click',function(e){
  }
 
 function deleteAsset(){
-     let table = document.getElementById("assetTable");
+    let table = document.getElementById("assetTable");
     let del =prompt("Enter the asset id you want to delete");
     let delrow = document.getElementById(del);
     if(delrow){
@@ -172,3 +174,20 @@ function deleteAsset(){
        },2000);
     }
  }
+
+function editAsset(){
+    let id= prompt("Enter asset id");
+    let name = prompt("Edit Asset Name:");
+    let category = prompt("Edit Category:");
+    let assignee = prompt("Edit Assignee Name:");
+
+    if (!id || !name || !category || !assignee) {
+        alert("All fields are required!");
+        return;
+    }
+     
+    let row = document.getElementById(id);
+    row.cells[1].innerHTML=name;
+    row.cells[2].innerHTML=category;
+    row.cells[3].innerHTML=assignee;
+}

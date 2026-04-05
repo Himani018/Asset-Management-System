@@ -8,7 +8,7 @@
 body {
     display: flex;
     height: 100vh;
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--third);
 }
 
@@ -117,6 +117,11 @@ body {
 }
 #sett-sec{
     display: none;
+    position: relative;
+    p{
+        color: #7e7676;
+        width: 290px;
+    }
 }
 #dashboard{
     
@@ -127,12 +132,56 @@ body {
 }
 .set-card{
     background-color: #ffffff;
-    height: 500px;
-    width: 200px;
+    height: 400px;
+    width: 250px;
     border-radius: 30px;
     box-shadow: inset;
     padding: 30px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    p{
+        color: #7e7676;
+    }
+}
+
+#set-card2{
+    background-color: #ffffff;
+    height: 500px;
+    width: 700px;
+    border-radius: 30px;
+    padding: 30px;
+    position: absolute;
+    margin-left: 280px;
+    margin-top: 45px;
+    p{
+        color: #7e7676;
+        width: 500px;
+    }
+    label{
+        margin-top: 20px;
+        /* display: flex; */
+        /* flex-direction: row; */
+    }
+    #edit{
+        position: absolute; 
+        margin-left: 450px;
+        border-radius: 10px;
+        width: 70px;
+        margin-top: 40px;
+        
+    }
+    #save{
+        position: absolute; 
+        margin-left: 530px;
+        border-radius: 10px;
+        margin-top: 40px;
+        
+    }
+
 }
 #noasset p:nth-child(1){
     display: block;
@@ -186,6 +235,6 @@ body {
     border-radius:50%;
     object-fit:cover;
     border:3px solid #2196f3;
-    margin-top: 100px;
-    margin-bottom: 30px;
+    margin: 0 0 18px 0;
+    display: block;
 }

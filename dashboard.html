@@ -70,8 +70,8 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                     
-          <tbody id="assetTable">
+
+                    <tbody id="assetTable">
                         <tr id="1">
                             <td>1</td>
                             <td>Laptop Pro</td>
@@ -118,13 +118,13 @@
 
                 </table>
             </div>
-<div id="noasset" style="display:none;">
-            
-            <p>No asset Found 😟</p>
+            <div id="noasset" style="display:none;">
 
-            <p>There are no asset available at this moment !!</p>
-            <p ><i class="fa-solid fa-box-open"></i> </p>
-        </div> 
+                <p>No asset Found 😟</p>
+
+                <p>There are no asset available at this moment !!</p>
+                <p><i class="fa-solid fa-box-open"></i> </p>
+            </div>
 
         </div>
 
@@ -135,57 +135,73 @@
 
         <div id="repo-sec">
             <div id="p">
-                 <button onclick="generatePDF2()" class="btn pdf mb-3" id="pdf2">Download As PDF</button>
+                <button onclick="generatePDF2()" class="btn pdf mb-3" id="pdfbtn2">Download As PDF</button>
             </div>
             <h2>Asset Report</h2>
             <p>Choose how you want to generate the report</p>
-<select name="" id="select">
+            <select name="" id="select">
                 <option value="ALL">ALL</option>
                 <option value="Electronic">Electronic</option>
                 <option value="furniture">furniture</option>
                 <option value="accessories">accessories</option>
             </select>
-            <button class="btn btn-primary mb-3" style="position: absolute; margin-left: 5px;" onclick="openReport()">Generate</button>
-           
+            <button class="btn btn-primary mb-3" style="position: absolute; margin-left: 5px;"
+                onclick="openReport()">Generate</button>
+
             <div id="report">
                 <div id="pdf2">
 
-                <!-- Table -->
-                <table class="table table-bordered" style="margin-top: 40px;">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Assignee</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                        
-                    <tbody id="repoTable">
-                    </tbody>
-                </table>
+                    <!-- Table -->
+                    <table class="table table-bordered" style="margin-top: 40px;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Assignee</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
 
-            </div>
+                        <tbody id="repoTable">
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
         </div>
 
-        
+
         <div id="sett-sec">
-           
+            <!-- <p style="color: blue;">Workspace control center</p> -->
 
-                 
-                  <h3> <i class="fa-solid fa-user-gear"></i> Profile Setting</h3>
-                 
-                   <div class="set-card">
-                     <img src="./defaultPfp.jpg" alt= "Oops!!Something went wrong." id="defaultPfp">
+            <div id="set-card2">
+                
+                <h5>Personal Information</h5>
+                <button onclick="edit()" id="edit" class="btn pdf mb-3">Edit</button>
+                <button onclick="save()" class="btn pdf mb-3" id="save" >Save Changes</button>
+                <p>Keep Your Account details current and correct for asset assignment and reporting.</p>
+                <label for="name">Name:</label>
+                <input class="form-control w-50" type="text" value="User" id="name" readonly>
+                <label  for="name">Email:</label>
+                <input class="form-control w-50" type="email" value="User@gmail.com" id="email" readonly>
+                <label  for="name">Company:</label>
+                <input class="form-control w-50" type="company" value="BlueVault" id="company" readonly>
+                <label  for="name">Role:</label>
+                <input class="form-control w-50" type="role" value="Operational Manager" id="role" readonly>
+            </div>
+            <p style="color: rgb(84, 84, 250);">WORKSPACE CONTROL CENTER</p>
+            <h3> <i class="fa-solid fa-user-gear"></i>Settings</h3>
+            <p>Update your profile and keep asset under control</p>
 
-                      <button  class="btn btn-primary mb-3" id="uploadBtn" onclick="changePfp()">Change Image</button>
-                     <input type="file" id="imageUpload" accept="image/*" hidden >
-                   </div>
-                   <div id="set-card2">
+            <div class="set-card">
+                <img src="./defaultPfp.jpg" alt="Oops!!Something went wrong." id="defaultPfp">
+                <h5>USER</h5>
+                <p id="role2">Operational Manager</p>
+                <button class="btn btn-primary mb-3" id="uploadBtn" onclick="changePfp()">Change Image</button>
+                <input type="file" id="imageUpload" accept="image/*" hidden>
+            </div>
 
-                   </div>
         </div>
 
     </div>

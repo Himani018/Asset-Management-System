@@ -221,3 +221,27 @@ function changePfp(){
     }
     })
 }
+function edit(){
+    let name=document.getElementById("name");
+    let email=document.getElementById("email");
+    let company=document.getElementById("company");
+    let role=document.getElementById("role");
+    let role2=document.getElementById("role2");
+     
+    name.removeAttribute("readonly");
+    email.removeAttribute("readonly");
+    company.removeAttribute("readonly");
+    role.removeAttribute("readonly");
+    
+    let save =document.getElementById("save");
+    save.addEventListener('click',()=>{
+         name.setAttribute("readonly",true);
+         email.setAttribute("readonly",true);
+         company.setAttribute("readonly",true);
+         role.setAttribute("readonly",true);
+        setTimeout(()=>{
+               role2.innerHTML = role.value;
+        },2000);
+        
+    })
+}

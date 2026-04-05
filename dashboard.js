@@ -245,3 +245,27 @@ function edit(){
         
     })
 }
+
+
+
+const search=document.getElementById("searchBar");
+const table1 =document.getElementById("assetTable");
+
+search.addEventListener('input',()=>{
+    
+    let flag=false;
+    let eleTobeSearch =parseInt(search.value);
+    if (isNaN(eleTobeSearch)) return;
+    for(let i=0; i<table1.rows.length ; i++){
+        table1.rows[i].style.borderColor='';
+        if(eleTobeSearch == (parseInt(table1.rows[i].cells[0].innerText))){
+            table1.rows[i].style.border = "2px solid #3d40fd";
+                   flag=true;
+            setTimeout(()=>{
+                 table1.rows[i].style.borderColor='';  
+            },5000)
+           
+        }
+    }
+    if(!flag) alert("Asset not found!!");
+});

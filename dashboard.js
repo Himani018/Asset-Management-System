@@ -209,3 +209,15 @@ function openReport(){
     }
     
 }
+function changePfp(){
+    let pfp=document.getElementById("defaultPfp");
+    let upload =document.getElementById("imageUpload");
+    upload.click();
+    
+    upload.addEventListener('change',()=>{
+        const file = upload.files[0];
+    if(file){
+        pfp.src = URL.createObjectURL(file);
+    }
+    })
+}

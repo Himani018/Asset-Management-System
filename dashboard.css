@@ -127,10 +127,12 @@ body {
 }
 .set-card{
     background-color: #ffffff;
-    height: 550px;
-    width: 450px;
+    height: 500px;
+    width: 200px;
     border-radius: 30px;
     box-shadow: inset;
+    padding: 30px;
+    align-items: center;
 }
 #noasset p:nth-child(1){
     display: block;
@@ -177,4 +179,13 @@ body {
     position:absolute;
     margin-top: 10px; 
     margin-left: 650px;
+}
+#defaultPfp{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #2196f3;
+    margin-top: 100px;
+    margin-bottom: 30px;
 }

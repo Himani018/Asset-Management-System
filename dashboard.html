@@ -84,7 +84,7 @@
                             <td>Office Chair</td>
                             <td>furniture</td>
                             <td>Jane Smith</td>
-                            <td><span class="badge bg-success">Active</span></td>
+                            <td><span class="badge bg-warning">Maintenence</span></td>
                         </tr>
                         <tr id="3">
                             <td>3</td>
@@ -172,9 +172,20 @@
 
         
         <div id="sett-sec">
-            <div class="set-card">
-                  
-            </div>
+           
+
+                 
+                  <h3> <i class="fa-solid fa-user-gear"></i> Profile Setting</h3>
+                 
+                   <div class="set-card">
+                     <img src="./defaultPfp.jpg" alt= "Oops!!Something went wrong." id="defaultPfp">
+
+                      <button  class="btn btn-primary mb-3" id="uploadBtn" onclick="changePfp()">Change Image</button>
+                     <input type="file" id="imageUpload" accept="image/*" hidden >
+                   </div>
+                   <div id="set-card2">
+
+                   </div>
         </div>
 
     </div>

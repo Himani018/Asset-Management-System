@@ -16,15 +16,32 @@ body {
     width: 250px;
     background: #079fce;
     padding: 20px;
+    position: fixed;
+    top: 0; 
+    left: 0;      
+    height: 100vh;    
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar h4 {
     color: var(--primary);
+    margin: 0;
+}
+
+.sidebar-links {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 2px;
 }
 
 .sidebar a {
-    margin-top: 30px;
-    display: block;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
     padding: 20px;
     color: #333;
     text-decoration: none;
@@ -46,6 +63,9 @@ body {
 .main {
     flex: 1;
     padding: 20px;
+    margin-left: 250px; 
+    height: 100vh;
+    overflow-y: auto; 
 }
 
 .topbar {
@@ -82,14 +102,16 @@ body {
 .profile-menu a:hover {
     background: #f1f5f9;
 }
-
+#searchBar{
+    border:1px solid #6ecaf1;
+}
 .table thead {
     background: var(--primary);
     color: white;
 }
 
 .btn-primary ,.pdf {
-     background-color: var(--secondary);
+    background-color: var(--secondary);
     border: none;
 }
 .pdf{
@@ -109,9 +131,6 @@ body {
 #dash-sec{
     display: block;
 }
-#user-sec{
-    display: none;
-}
 #repo-sec{
     display: none;
 }
@@ -124,8 +143,7 @@ body {
     }
 }
 #dashboard{
-    
-    margin-top: 30px;
+    margin-top: 0;
 }
 .form-control:hover{
     border-color: #2563eb;
@@ -183,27 +201,45 @@ body {
     }
 
 }
-#noasset p:nth-child(1){
-    display: block;
-    margin-left: 350px;
-    font-size: x-large;
-    color: rgb(253, 106, 87);
+#assetWrap{
+    background-color: #ffffff;
+    min-height: 100vh;
+    width: 980px;
+    border-radius: 30px;
+    padding: 14px 30px 30px;
+    position: relative;
 }
-#noasset p:nth-child(2){
-    margin-left: 300px;
-    /* font-size:100px; */
-    color:#6c8fa3;
-    /* margin-top: 80px; */
+#repoWrap{
+    background-color: #ffffff;
+    min-height: 100vh;
+    width: 980px;
+    border-radius: 30px;
+    padding: 14px 30px 30px;
+    position: relative;
+    #pdfbtn2{
+    margin-left: 0;
+    margin-top: 0;
+    position: absolute;
+    top: 14px;
+    right: 30px;
+   }
+   #repo-sel{
 
-}
-#noasset p:nth-child(3){
-    margin-left: 380px;
-    font-size:100px;
-    color:#6c8fa3;
-    margin-top: 50px;
-
-}
-#select{
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 920px;
+    height: 100px;
+    padding: 10px;
+    box-shadow: 0 5px 18px rgb(209, 208, 208);
+    
+    p{
+        font-size: 12px;
+        font-weight: bold;
+        margin-left: 20px;
+        margin-bottom: 5px;
+    }
+   }
+   #select{
     width:250px;
     padding:9px 12px;
     border:1px solid #6ecaf1;
@@ -214,7 +250,82 @@ body {
     outline:none;
     cursor:pointer;
     transition:all 0.2s ease;
+    margin-left: 10px;
+    
+   }
+   #genBtn{
+    margin-left: 500px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+   }
+   #pdfbtn2{
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+   }
+   #repoP{
+    color: grey;
+    width: 710px;
+  }
+  #report{
+    margin-top: 30px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 920px;
+    min-height: 100vh;
+    padding: 20px;
+    box-shadow: 0 5px 18px rgb(209, 208, 208);
+    position: relative;
+    h3{
+        margin-top: 10px;
+    }
+    h6{
+        background-color: #b2f1e2;
+        border-radius: 5px;
+        width: 70px;
+        padding: 5px;
+    }
+    p{
+        color: #6b6a6a;
+        margin-left: 400px;
+        width: 500px;
+        position: absolute;
+    }
+  }
 }
+
+#repoBadge{
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background-color: #e8f7fb;
+    color: #2f9bc3;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+#repoWrap h2{
+    margin-top: 0;
+}
+
+#noasset p:nth-child(1){
+    display: block;
+    margin-left: 350px;
+    font-size: x-large;
+    color: rgb(253, 106, 87);
+}
+#noasset p:nth-child(2){
+    margin-left: 300px;
+    color:#6c8fa3;
+}
+#noasset p:nth-child(3){
+    margin-left: 380px;
+    font-size:100px;
+    color:#6c8fa3;
+    margin-top: 50px;
+
+}
+
 
 #select:hover{
     border-color:#2196f3;
@@ -238,5 +349,4 @@ body {
     margin: 0 0 18px 0;
     display: block;
 }
-
 

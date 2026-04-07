@@ -4,6 +4,10 @@ function toggleMenu() {
     let menu = document.getElementById("menu");
     menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
+function logout() {
+    alert("Logged out successfully!");
+    window.location.href='home.html';
+}
 
 // Add Asset
 function addAsset() {
@@ -19,16 +23,15 @@ function addAsset() {
     let table = document.getElementById("assetTable");
 
     let newId = 1;
-    //ye banaya taki asset add krne ke baad ye hat jaye  
+    //ye banaya taki asset add krne ke baad ye hat jaye ..no asser found wala 
     if(table.rows.length<1){
        let starting = document.getElementById("noasset");
        starting.style.display='none';
     }
 
     if (table.rows.length >= 1) {
-        let lastRow = table.rows[table.rows.length - 1];
+        let lastRow = table.rows[table.rows.length - 1]; //will accecess the last row by itt
         let lastId = lastRow.cells[0].innerText;
-
         newId = parseInt(lastId) + 1;
     }
 
@@ -44,121 +47,8 @@ function addAsset() {
 
     table.innerHTML += newRow;
 }
+// end add asset option
 
-
-function logout() {
-    alert("Logged out successfully!");
-    window.location.href='home.html';
-}
-
-
-const dashlink =document.getElementById('dashboard');
-const dashSec =document.getElementById('dash-sec');
-
-const assetlink =document.getElementById('asset');
-const assetSec =document.getElementById('asset-sec');
-
-const userlink =document.getElementById('user');
-const userSec =document.getElementById('user-sec');
-
-const repolink =document.getElementById('report');
-const repoSec =document.getElementById('repo-sec');
-
-const settlink =document.getElementById('setting');
-const settSec =document.getElementById('sett-sec');
-
-assetlink.addEventListener('click',function(e){
-    e.preventDefault();
-    removeBackColor();
-    assetSec.style.display="block";
-    dashSec.style.display="none";
-    userSec.style.display="none";
-    repoSec.style.display="none";
-    settSec.style.display="none";
-    assetlink.style.backgroundColor=" rgb(84, 205, 253)";
-    assetlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
-    assetlink.style.color="white";
- })
- dashlink.addEventListener('click',function(e){
-    e.preventDefault();
-    removeBackColor();
-    dashSec.style.display="block";
-    assetSec.style.display="none";
-    userSec.style.display="none";
-    repoSec.style.display="none";
-    settSec.style.display="none";
-    dashlink.style.backgroundColor=" rgb(84, 205, 253)";
-    dashlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
-    dashlink.style.color="white";
- })
- userlink.addEventListener('click',function(e){
-    e.preventDefault();
-    removeBackColor();
-    userSec.style.display="block";
-    dashSec.style.display="none";
-    assetSec.style.display="none";
-    repoSec.style.display="none";
-    settSec.style.display="none";
-    userlink.style.backgroundColor=" rgb(84, 205, 253)";
-    userlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
-    userlink.style.color="white";
- })
- repolink.addEventListener('click',function(e){
-    e.preventDefault();
-    removeBackColor();
-    repoSec.style.display="block";
-    dashSec.style.display="none";
-    assetSec.style.display="none";
-    userSec.style.display="none";
-    settSec.style.display="none";
-    repolink.style.backgroundColor=" rgb(84, 205, 253)";
-    repolink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
-    repolink.style.color="white";
- })
- settlink.addEventListener('click',function(e){
-    e.preventDefault();
-    removeBackColor();
-    settSec.style.display="block";
-    dashSec.style.display="none";
-    assetSec.style.display="none";
-    userSec.style.display="none";
-    repoSec.style.display="none";
-    settlink.style.backgroundColor=" rgb(84, 205, 253)";
-    settlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
-    settlink.style.color="white";
- })
- function profile(){
-    removeBackColor();
-    settSec.style.display="block";
-    dashSec.style.display="none";
-    assetSec.style.display="none";
-    userSec.style.display="none";
-    repoSec.style.display="none";
-    settlink.style.backgroundColor=" rgb(84, 205, 253)";
-    settlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
-    settlink.style.color="white";
-}
- function removeBackColor(){
-    dashlink.style.backgroundColor="";
-    dashlink.style.color="black";
-    dashlink.style.boxShadow="";
-    
-    assetlink.style.backgroundColor="";
-    assetlink.style.color="black";
-    assetlink.style.boxShadow="";
-
-    repolink.style.backgroundColor="";
-    repolink.style.color="black";
-    repolink.style.boxShadow="";
-
-    userlink.style.backgroundColor="";
-    userlink.style.color="black";
-    userlink.style.boxShadow="";
-
-    settlink.style.backgroundColor="";
-    settlink.style.color="black";
-    settlink.style.boxShadow="";
- }
 
 function deleteAsset(){
     let table = document.getElementById("assetTable");
@@ -191,6 +81,116 @@ function editAsset(){
     row.cells[2].innerHTML=category;
     row.cells[3].innerHTML=assignee;
 }
+
+const search=document.getElementById("searchBar");
+const table1 =document.getElementById("assetTable");
+
+search.addEventListener('input',()=>{
+    
+    let flag=false;
+    let eleTobeSearch =parseInt(search.value);
+    if (isNaN(eleTobeSearch)) return;
+    for(let i=0; i<table1.rows.length ; i++){
+        table1.rows[i].style.borderColor='';
+        if(eleTobeSearch == (parseInt(table1.rows[i].cells[0].innerText))){
+            table1.rows[i].style.border = "2px solid #3d40fd";
+                   flag=true;
+            setTimeout(()=>{
+                 table1.rows[i].style.borderColor='';  
+            },5000)
+           
+        }
+    }
+    if(!flag) alert("Asset not found!!");
+});
+
+
+const dashlink =document.getElementById('dashboard');
+const dashSec =document.getElementById('dash-sec');
+
+const assetlink =document.getElementById('asset');
+const assetSec =document.getElementById('asset-sec');
+
+const repolink =document.getElementById('report');
+const repoSec =document.getElementById('repo-sec');
+
+const settlink =document.getElementById('setting');
+const settSec =document.getElementById('sett-sec');
+
+assetlink.addEventListener('click',function(e){
+    e.preventDefault();
+    removeBackColor();
+    assetSec.style.display="block";
+    dashSec.style.display="none";
+    repoSec.style.display="none";
+    settSec.style.display="none";
+    assetlink.style.backgroundColor=" rgb(84, 205, 253)";
+    assetlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    assetlink.style.color="white";
+ })
+ dashlink.addEventListener('click',function(e){
+    e.preventDefault();
+    removeBackColor();
+    dashSec.style.display="block";
+    assetSec.style.display="none";
+    repoSec.style.display="none";
+    settSec.style.display="none";
+    dashlink.style.backgroundColor=" rgb(84, 205, 253)";
+    dashlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    dashlink.style.color="white";
+ })
+ repolink.addEventListener('click',function(e){
+    e.preventDefault();
+    removeBackColor();
+    repoSec.style.display="block";
+    dashSec.style.display="none";
+    assetSec.style.display="none";
+    settSec.style.display="none";
+    repolink.style.backgroundColor=" rgb(84, 205, 253)";
+    repolink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    repolink.style.color="white";
+    openReport();
+ })
+ settlink.addEventListener('click',function(e){
+    e.preventDefault();
+    removeBackColor();
+    settSec.style.display="block";
+    dashSec.style.display="none";
+    assetSec.style.display="none";
+    repoSec.style.display="none";
+    settlink.style.backgroundColor=" rgb(84, 205, 253)";
+    settlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    settlink.style.color="white";
+ })
+ function profile(){
+    removeBackColor();
+    settSec.style.display="block";
+    dashSec.style.display="none";
+    assetSec.style.display="none";
+    repoSec.style.display="none";
+    settlink.style.backgroundColor=" rgb(84, 205, 253)";
+    settlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
+    settlink.style.color="white";
+}
+ function removeBackColor(){
+    dashlink.style.backgroundColor="";
+    dashlink.style.color="black";
+    dashlink.style.boxShadow="";
+    
+    assetlink.style.backgroundColor="";
+    assetlink.style.color="black";
+    assetlink.style.boxShadow="";
+
+    repolink.style.backgroundColor="";
+    repolink.style.color="black";
+    repolink.style.boxShadow="";
+
+    settlink.style.backgroundColor="";
+    settlink.style.color="black";
+    settlink.style.boxShadow="";
+ }
+
+
 function openReport(){
 
     document.getElementById("asset-sec").style.display="none";
@@ -209,6 +209,10 @@ function openReport(){
     }
     
 }
+
+
+// set sec ke liye h
+
 function changePfp(){
     let pfp=document.getElementById("defaultPfp");
     let upload =document.getElementById("imageUpload");
@@ -221,6 +225,7 @@ function changePfp(){
     }
     })
 }
+
 function edit(){
     let name=document.getElementById("name");
     let email=document.getElementById("email");
@@ -245,27 +250,3 @@ function edit(){
         
     })
 }
-
-
-
-const search=document.getElementById("searchBar");
-const table1 =document.getElementById("assetTable");
-
-search.addEventListener('input',()=>{
-    
-    let flag=false;
-    let eleTobeSearch =parseInt(search.value);
-    if (isNaN(eleTobeSearch)) return;
-    for(let i=0; i<table1.rows.length ; i++){
-        table1.rows[i].style.borderColor='';
-        if(eleTobeSearch == (parseInt(table1.rows[i].cells[0].innerText))){
-            table1.rows[i].style.border = "2px solid #3d40fd";
-                   flag=true;
-            setTimeout(()=>{
-                 table1.rows[i].style.borderColor='';  
-            },5000)
-           
-        }
-    }
-    if(!flag) alert("Asset not found!!");
-});

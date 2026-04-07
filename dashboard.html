@@ -16,50 +16,45 @@
 
 <body>
 
-    <!-- Sidebar -->
+    <!-- Sidebar startttt-->
     <div class="sidebar">
         <h4><i class="fa-solid fa-box-archive"></i> BlueVault Asset</h4>
-        <a href="#dash-sec" id="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
-        <a href="#asset-sec" id="asset"><i class="fa-solid fa-box"></i> Assets</a>
-        <a href="#user-sec" id="user"> <i class="fa-solid fa-users"></i> Users</a>
-        <a href="#repo-sec" id="report"><i class="fa-solid fa-file"></i> Reports</a>
-        <a href="#sett-sec" id="setting"><i class="fa-solid fa-gear"></i> Settings</a>
+        <div class="sidebar-links">
+            <a href="#dash-sec" id="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+            <a href="#asset-sec" id="asset"><i class="fa-solid fa-box"></i> Assets</a>
+            <a href="#repo-sec" id="report"><i class="fa-solid fa-file"></i> Reports</a>
+            <a href="#sett-sec" id="setting"><i class="fa-solid fa-gear"></i> Settings</a>
+        </div>
     </div>
-
-    <!-- Main -->
+  <!-- sidebar enddddddd -->
+    
+  <!-- right side bar start -->
     <div class="main">
 
-        <!-- Topbar -->
+       
         <div id="dash-sec">
 
             <div class="profile" onclick="toggleMenu()">
                 <i class="fa-solid fa-user-circle fa-2x"></i>
-
-
                 <div class="profile-menu" id="menu">
                     <a href="#" onclick="profile()"><i class="fa fa-user"></i> Profile </a>
                     <a href="#" onclick="logout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
 
-
         </div>
 
         <div id="asset-sec">
+            <div id="assetWrap">
             <div class="topbar">
                 <input type="text" class="form-control w-50" placeholder="Search asset by id..." id="searchBar">
                 <button onclick="generatePDF()" class="btn pdf mb-3">Download As PDF</button>
-
             </div>
-
-            <!-- Add Button -->
             <button class="btn btn-primary mb-3" onclick="addAsset()">+ Add Asset</button>
             <button class="btn btn-primary mb-3" onclick="deleteAsset()">- Delete Asset</button>
             <button class="btn btn-primary mb-3" onclick="editAsset()">* Edit Asset</button>
 
-
             <div id="pdf">
-                <!-- Table -->
                 <table class="table table-bordered">
                     <thead>
                         <tr >
@@ -95,23 +90,58 @@
                         </tr>
                         <tr id="4">
                             <td>4</td>
-                            <td>Mouse Pad</td>
-                            <td>accessories</td>
-                            <td>Bob Wilson</td>
+                            <td>Office Desk</td>
+                            <td>furniture</td>
+                            <td>Alice Johnson</td>
                             <td><span class="badge bg-success">Active</span></td>
                         </tr>
                         <tr id="5">
                             <td>5</td>
-                            <td>Mouse Pad</td>
+                            <td>Wireless Keyboard</td>
+                            <td>accessories</td>
+                            <td>Charlie Brown</td>
+                            <td><span class="badge bg-warning">Maintenance</span></td>
+                        </tr>
+                        <tr id="6">
+                            <td>6</td>
+                            <td>Monitor 24inch</td>
+                            <td>Electronic</td>
+                            <td>Diana Prince</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                        </tr>
+                        <tr id="7">
+                            <td>7</td>
+                            <td>Printer Laser</td>
+                            <td>Electronic</td>
+                            <td>John Doe</td>
+                            <td><span class="badge bg-danger">Retired</span></td>
+                        </tr>
+                        <tr id="8">
+                            <td>8</td>
+                            <td>Webcam HD</td>
+                            <td>accessories</td>
+                            <td>Jane Smith</td>
+                            <td><span class="badge bg-success">Active</span></td>
+                        </tr>
+                        <tr id="9">
+                            <td>9</td>
+                            <td>Headset Wireless</td>
                             <td>accessories</td>
                             <td>Bob Wilson</td>
                             <td><span class="badge bg-success">Active</span></td>
                         </tr>
-                        <tr id="6">
-                            <td>6</td>
-                            <td>Mouse Pad</td>
-                            <td>accessories</td>
-                            <td>Bob Wilson</td>
+                        <tr id="10">
+                            <td>10</td>
+                            <td>UPS Backup</td>
+                            <td>Electronic</td>
+                            <td>Alice Johnson</td>
+                            <td><span class="badge bg-warning">Maintenance</span></td>
+                        </tr>
+                        <tr id="11">
+                            <td>11</td>
+                            <td>Projector</td>
+                            <td>Electronic</td>
+                            <td>Charlie Brown</td>
                             <td><span class="badge bg-success">Active</span></td>
                         </tr>
                     </tbody>
@@ -125,30 +155,33 @@
                 <p>There are no asset available at this moment !!</p>
                 <p><i class="fa-solid fa-box-open"></i> </p>
             </div>
-
+          </div>
         </div>
-
-        <div id="user-sec">
-            <h2>user secion </h2>
-        </div>
-
+<!-- asset sec enddddddddddddddddd -->
 
         <div id="repo-sec">
-            <div id="p">
-                <button onclick="generatePDF2()" class="btn pdf mb-3" id="pdfbtn2">Download As PDF</button>
-            </div>
+          <div id="repoWrap">
+            <button onclick="generatePDF2()" class="btn pdf mb-3" id="pdfbtn2">Download As PDF</button>
+            <p id="repoBadge">REPORTING WORKSPACE</p>
             <h2>Asset Report</h2>
-            <p>Choose how you want to generate the report</p>
+            <p id="repoP">Filter the inventory by category, preview the result in one place ,and export a clean pdf when the report
+                is ready
+            </p>
+            <div id="repo-sel">
+            <p>Report Category</p>
             <select name="" id="select">
-                <option value="ALL">ALL</option>
+                <option value="ALL" selected>ALL</option>
                 <option value="Electronic">Electronic</option>
                 <option value="furniture">furniture</option>
                 <option value="accessories">accessories</option>
             </select>
-            <button class="btn btn-primary mb-3" style="position: absolute; margin-left: 5px;"
-                onclick="openReport()">Generate</button>
+            <button class="btn btn-primary mb-3" onclick="openReport()" id="genBtn">Generate</button>
+             </div>
 
             <div id="report">
+                <h6>Preview</h6>
+                <p id="#p2">Your filtered row will appear here and stay export - ready for pdf download</p>
+                <h3>Generated Asset report</h3>
                 <div id="pdf2">
 
                     <!-- Table -->
@@ -170,10 +203,10 @@
                 </div>
             </div>
         </div>
+        </div>
 
 
         <div id="sett-sec">
-            <!-- <p style="color: blue;">Workspace control center</p> -->
 
             <div id="set-card2">
                 
@@ -203,9 +236,8 @@
             </div>
 
         </div>
-
     </div>
-
+<!-- right side bar end -->
 
 </body>
 <script src="dashboard.js"></script>

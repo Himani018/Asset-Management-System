@@ -21,29 +21,9 @@
     };
 
     // 3. Form Submission Logic
-    document.getElementById('loginForm').onsubmit = (e) => {
-        e.preventDefault();
-        window.location.href = 'dashboard.html'; // Goes to your dashboard file
-    };
-
     document.getElementById('signupForm').onsubmit = (e) => {
-        e.preventDefault();
         if (p1.value !== p2.value) {
+            e.preventDefault();
             alert("Passwords must match!");
-            return;
         }
-        
-        // Simulate Account Creation
-        const btn = document.getElementById('create-btn');
-        btn.innerText = "Account Created!";
-        btn.style.background = "var(--success)";
-
-        setTimeout(() => {
-            alert("Success! You can now login with your new account.");
-            toggleForm('login-box'); // Sends them back to login within the same file
-            btn.innerText = "Create Account";
-            btn.style.background = "var(--primary)";
-            document.getElementById('signupForm').reset();
-            msg.innerText = "";
-        }, 1500);
     };

@@ -17,8 +17,8 @@
         <a href="#h" id="home">Home</a>
         <a href="#a" id="about">About Us</a>
         <a href="#cont" id="contact">Contact</a>
-        <button id="btn" onclick="window.location.href='login.html'">Login</button>
-        <a href="dashboard.html" id="dashboard" style="display:none;">Dashboard</a>
+        <button id="btn" onclick="window.location.href='login.php'">Login</button>
+        <a href="dashboard.php" id="dashboard" style="display:none;">Dashboard</a>
     </div>
 </div>
 

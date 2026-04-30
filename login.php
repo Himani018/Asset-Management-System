@@ -18,15 +18,23 @@
     <div id="login-box" class="form-box active">
         <h1>Welcome back</h1>
         <p class="subtitle">Please enter your credentials to sign in</p>
+        <?php
+        $loginError = $_GET["error"] ?? "";
+        if ($loginError === "invalid") {
+            echo '<p class="subtitle" style="color: var(--error);">Invalid email or password.</p>';
+        } elseif ($loginError === "empty") {
+            echo '<p class="subtitle" style="color: var(--error);">Please fill in all fields.</p>';
+        }
+        ?>
         
-        <form id="loginForm">
+        <form id="loginForm" action="includes/loginhandler.inc.php" method="post">
             <div class="input-group">
                 <label>Email address</label>
-                <div class="wrapper"><i class="fa-regular fa-envelope"></i><input type="email" required placeholder="name@company.com"></div>
+                <div class="wrapper"><i class="fa-regular fa-envelope"></i><input type="email" name="email" required placeholder="name@company.com"></div>
             </div>
             <div class="input-group">
                 <label>Password</label>
-                <div class="wrapper"><i class="fa-solid fa-lock"></i><input type="password" required placeholder="••••••••"></div>
+                <div class="wrapper"><i class="fa-solid fa-lock"></i><input type="password" name="pwd" required placeholder="••••••••"></div>
             </div>
             <button type="submit" class="btn">Sign in</button>
         </form>
@@ -39,18 +47,18 @@
         <h1>Create account</h1>
         <p class="subtitle">Join us to start managing your assets</p>
         
-        <form id="signupForm">
+        <form id="signupForm" action="includes/formhandler.inc.php" method="post">
             <div class="input-group">
                 <label>Full Name</label>
-                <div class="wrapper"><i class="fa-regular fa-user"></i><input type="text" required placeholder="John Doe"></div>
+                <div class="wrapper"><i class="fa-regular fa-user"></i><input type="text" name="username" required placeholder="John Doe"></div>
             </div>
             <div class="input-group">
                 <label>Email address</label>
-                <div class="wrapper"><i class="fa-regular fa-envelope"></i><input type="email" required placeholder="name@company.com"></div>
+                <div class="wrapper"><i class="fa-regular fa-envelope"></i><input type="email" name="email" required placeholder="name@company.com"></div>
             </div>
             <div class="input-group">
                 <label>Password</label>
-                <div class="wrapper"><i class="fa-solid fa-lock"></i><input type="password" id="s-pass" required placeholder="••••••••"></div>
+                <div class="wrapper"><i class="fa-solid fa-lock"></i><input type="password" id="s-pass" name="pwd" required placeholder="••••••••"></div>
             </div>
             <div class="input-group">
                 <label>Confirm Password</label>
@@ -68,7 +76,7 @@
     </div>
 </div>
 
-<script src="./login.js"></script>
+<script src="./login.js?v=1"></script>
 
 </body>
 </html>

@@ -6,7 +6,7 @@ function toggleMenu() {
 }
 function logout() {
     alert("Logged out successfully!");
-    window.location.href='home.php';
+    window.location.href='home.html';
 }
 
 // Add Asset

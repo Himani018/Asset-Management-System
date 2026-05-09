@@ -1,3 +1,15 @@
+<?php
+session_start();
+if( ! isset($_SESSION['username']) ){
+    $_SESSION['username']= 'user';
+
+}
+if( ! isset($_SESSION['email']) ){
+        $_SESSION['email']= 'user@email.com' ;
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -211,17 +223,34 @@
             <div id="set-card2">
                 
                 <h5>Personal Information</h5>
-                <button onclick="edit()" id="edit" class="btn pdf mb-3">Edit</button>
-                <button onclick="save()" class="btn pdf mb-3" id="save" >Save Changes</button>
+                    <button onclick="edit()" id="edit" class="btn pdf mb-3">Edit</button>
+                <form  id="changedForm" method="post" action="includes/change.php">
+            
+                <button class="btn pdf mb-3" id="save" type="submit">Save Changes</button>
                 <p>Keep Your Account details current and correct for asset assignment and reporting.</p>
                 <label for="name">Name:</label>
-                <input class="form-control w-50" type="text" value="User" id="name" readonly>
+                <input class="form-control w-50" type="text" name="username" id="name" readonly  value="<?php echo htmlspecialchars($_SESSION['username']) ?>" >
                 <label  for="name">Email:</label>
-                <input class="form-control w-50" type="email" value="User@gmail.com" id="email" readonly>
+                <input class="form-control w-50" type="email" name="email" value="<?php echo htmlspecialchars($_SESSION['email']) ?>" id="email" readonly>
                 <label  for="name">Company:</label>
-                <input class="form-control w-50" type="company" value="BlueVault" id="company" readonly>
+                <input class="form-control w-50" type="company" name="company" value="BlueVault" id="company" readonly>
                 <label  for="name">Role:</label>
-                <input class="form-control w-50" type="role" value="Operational Manager" id="role" readonly>
+                <input class="form-control w-50" type="role" name="role" value="Operational Manager" id="role" readonly>
+                 <?php
+                 if(isset($_SESSION['success'])){
+                    echo '<p class="text-success">'. htmlspecialchars($_SESSION['success']) .'</p>';
+                    unset($_SESSION['success']);
+                 }
+                 if(isset($_SESSION['empty'])){
+                    echo '<p class="text-danger">'. htmlspecialchars($_SESSION['empty']) .'</p>';
+                    unset($_SESSION['empty']);
+                 }
+                 if(isset($_SESSION['loginE'])){
+                    echo '<p class="text-danger">'. htmlspecialchars($_SESSION['loginE']) .'</p>';
+                    unset($_SESSION['loginE']);
+                 }
+                 ?>
+             </form>
             </div>
             <p style="color: rgb(84, 84, 250);">WORKSPACE CONTROL CENTER</p>
             <h3> <i class="fa-solid fa-user-gear"></i>Settings</h3>
@@ -229,7 +258,7 @@
 
             <div class="set-card">
                 <img src="./defaultPfp.jpg" alt="Oops!!Something went wrong." id="defaultPfp">
-                <h5>USER</h5>
+                <h5> <?php  echo htmlspecialchars($_SESSION['username']) ?>  </h5>
                 <p id="role2">Operational Manager</p>
                 <button class="btn btn-primary mb-3" id="uploadBtn" onclick="changePfp()">Change Image</button>
                 <input type="file" id="imageUpload" accept="image/*" hidden>
@@ -238,9 +267,9 @@
         </div>
     </div>
 <!-- right side bar end -->
-
-</body>
 <script src="dashboard.js"></script>
+</body>
+
 <script>
     function generatePDF() {
         const pdf = document.getElementById("pdf");

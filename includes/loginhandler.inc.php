@@ -16,7 +16,7 @@ if ($email === "" || $pwd === "") {
 try {
    require_once __DIR__ . "/dbh.inc.php"; //dtr is constant and it give path to current directrly for this C:/xampp/htdocs/assetmanagemntsystem/includes is dtr and the . connect it with /.dbc.inc.php file and it becomes C:/xampp/htdocs/assetmsystem/includes/dbh.inc.php
 
-   $query = "SELECT id, username, email, pwd FROM users WHERE email = :email LIMIT 1;";
+   $query = "SELECT id, username, email, pwd ,company,role FROM users WHERE email = :email LIMIT 1;";
    $stmt = $pdo->prepare($query);
    $stmt->bindParam(":email", $email);
    $stmt->execute();
@@ -33,6 +33,8 @@ try {
    $_SESSION["user_id"] = $user["id"];
    $_SESSION["username"] = $user["username"];
    $_SESSION["email"] = $user["email"];
+   $_SESSION["company"] = $user["company"];
+   $_SESSION["role"] = $user["role"];
 
    header("Location: ../dashboard.php");
    exit;

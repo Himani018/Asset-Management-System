@@ -8,6 +8,14 @@ if( ! isset($_SESSION['email']) ){
         $_SESSION['email']= 'user@email.com' ;
 
 }
+if( ! isset($_SESSION['company']) ){
+    $_SESSION['company']= 'bluevault';
+
+}
+if( ! isset($_SESSION['role']) ){
+        $_SESSION['role']= 'manager' ;
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -233,9 +241,9 @@ if( ! isset($_SESSION['email']) ){
                 <label  for="name">Email:</label>
                 <input class="form-control w-50" type="email" name="email" value="<?php echo htmlspecialchars($_SESSION['email']) ?>" id="email" readonly>
                 <label  for="name">Company:</label>
-                <input class="form-control w-50" type="company" name="company" value="BlueVault" id="company" readonly>
+                <input class="form-control w-50" type="company" name="company" value="<?php echo htmlspecialchars($_SESSION['company']) ?>" id="company" readonly>
                 <label  for="name">Role:</label>
-                <input class="form-control w-50" type="role" name="role" value="Operational Manager" id="role" readonly>
+                <input class="form-control w-50" type="role" name="role" value="<?php echo htmlspecialchars($_SESSION['role']) ?>" id="role" readonly>
                  <?php
                  if(isset($_SESSION['success'])){
                     echo '<p class="text-success">'. htmlspecialchars($_SESSION['success']) .'</p>';
@@ -259,7 +267,7 @@ if( ! isset($_SESSION['email']) ){
             <div class="set-card">
                 <img src="./defaultPfp.jpg" alt="Oops!!Something went wrong." id="defaultPfp">
                 <h5> <?php  echo htmlspecialchars($_SESSION['username']) ?>  </h5>
-                <p id="role2">Operational Manager</p>
+                <p id="role2"> <?php  echo htmlspecialchars($_SESSION['role']) ?>  </p>
                 <button class="btn btn-primary mb-3" id="uploadBtn" onclick="changePfp()">Change Image</button>
                 <input type="file" id="imageUpload" accept="image/*" hidden>
             </div>
@@ -267,7 +275,7 @@ if( ! isset($_SESSION['email']) ){
         </div>
     </div>
 <!-- right side bar end -->
-<script src="dashboard.js"></script>
+<script src="dashboard.js?v=2"></script>
 </body>
 
 <script>

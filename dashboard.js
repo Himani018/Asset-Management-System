@@ -165,6 +165,13 @@ assetlink.addEventListener('click',function(e){
     settlink.style.boxShadow=" 0 4px 10px rgba(255, 255, 255, 0.3),0 0 8px rgba(55, 223, 245, 0.4),0 0 16px rgba(20, 114, 209, 0.4)" ;
     settlink.style.color="white";
  })
+ 
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.location.hash === "#sett-sec") {
+     profile();
+   }
+});
+
  function profile(){
     removeBackColor();
     settSec.style.display="block";

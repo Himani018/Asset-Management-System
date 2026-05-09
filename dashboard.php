@@ -17,6 +17,18 @@ $stmt->execute();
 $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //to get asset table
 
+// Unique categories for report filter (lowercased to keep consistent)
+$categories = [];
+foreach ($assets as $a) {
+    $cat = strtolower(trim((string)($a['category'] ?? '')));
+    if ($cat === '') {
+        continue;
+    }
+    $categories[$cat] = $cat;
+}
+$categories = array_values($categories);
+sort($categories, SORT_NATURAL | SORT_FLAG_CASE);
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
@@ -72,7 +84,7 @@ if (!isset($_SESSION['role'])) {
     <!-- right side bar start -->
     <div class="main">
 
-
+<!-- dashboard -->
         <div id="dash-sec">
 
             <div class="profile" onclick="toggleMenu()">
@@ -82,9 +94,9 @@ if (!isset($_SESSION['role'])) {
                     <a href="#" onclick="logout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
-
+                     
         </div>
-
+<!-- asset sec -->
         <div id="asset-sec">
 
 
@@ -116,7 +128,7 @@ if (!isset($_SESSION['role'])) {
                     <h5>Add Asset</h5>
                     <form action="includes/asset_add.php" method="post">
                         <input class="form-control w-50" name="asset" placeholder="Asset name" required>
-                        <input class="form-control w-50" name="category" placeholder="Category" required>
+                        <input class="form-control w-50" name="category" placeholder="Category" required oninput="this.value=this.value.toLowerCase()">
                         <input class="form-control w-50" name="assignee" placeholder="Assignee" required>
 
                         <select class="form-control w-50" name="stat" required>
@@ -137,7 +149,7 @@ if (!isset($_SESSION['role'])) {
                     <form action="includes/asset_update.php" method="post">
                         <input class="form-control w-50" name="id" placeholder="Asset ID" required>
                         <input class="form-control w-50" name="asset" placeholder="New asset name" required>
-                        <input class="form-control w-50" name="category" placeholder="New category" required>
+                        <input class="form-control w-50" name="category" placeholder="New category" required oninput="this.value=this.value.toLowerCase()">
                         <input class="form-control w-50" name="assignee" placeholder="New assignee" required>
 
                         <select class="form-control w-50" name="stat" required>
@@ -197,7 +209,7 @@ if (!isset($_SESSION['role'])) {
                                     <tr id="<?php echo htmlspecialchars($a['id']); ?>">
                                         <td><?php echo htmlspecialchars($a['id']); ?></td>
                                         <td><?php echo htmlspecialchars($a['asset']); ?></td>
-                                        <td><?php echo htmlspecialchars($a['category']); ?></td>
+                                        <td><?php echo htmlspecialchars(strtolower(trim((string)($a['category'] ?? '')))); ?></td>
                                         <td><?php echo htmlspecialchars($a['assignee']); ?></td>
                                         <td><span class="badge <?php echo $badgeClass; ?>">
                                                 <?php echo htmlspecialchars($status); ?>
@@ -234,18 +246,23 @@ if (!isset($_SESSION['role'])) {
                 <div id="repo-sel">
                     <p>Report Category</p>
 
-                    <?php if (!empty($assets)): ?>
+                    <?php if (!empty($categories)): ?>
                         <select name="" id="select">
                             <option value="ALL" selected>ALL</option>
-                            <?php foreach ($assets as $a): ?>
-                                <option value="<?php echo htmlspecialchars($a['category']) ?>">
-                                    <?php echo htmlspecialchars($a['category']) ?></option>
+                            <?php foreach ($categories as $cat): ?>
+                                <option value="<?php echo htmlspecialchars($cat) ?>">
+                                    <?php echo htmlspecialchars($cat) ?></option>
 
                             <?php endforeach ?>
                         </select>
                     <?php endif ?>
 
-                    
+                     <select id="status">
+                        <option value="ALL" selected>ALL</option>
+                        <option value="Maintenance">Maintenance</option>
+                        <option value="Active">Active</option>
+                        <option value="Retired">Retired</option>
+                    </select>
 
                     <button class="btn btn-primary mb-3" onclick="openReport()" id="genBtn">Generate</button>
                 </div>

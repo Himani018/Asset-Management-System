@@ -13,7 +13,7 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 $asset    = trim($_POST["asset"] ?? "");
-$category = trim($_POST["category"] ?? "");
+$category = strtolower(trim($_POST["category"] ?? ""));
 $assignee = trim($_POST["assignee"] ?? "");
 $stat     = trim($_POST["stat"] ?? "Active");
 

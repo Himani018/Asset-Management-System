@@ -234,7 +234,7 @@ body {
       margin-bottom: 5px;
     }
   }
-  #select {
+  #select ,#status{
     width: 250px;
     padding: 9px 12px;
     border: 1px solid #6ecaf1;
@@ -248,7 +248,7 @@ body {
     margin-left: 10px;
   }
   #genBtn {
-    margin-left: 500px;
+    margin-left: 250px;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
   }
   #pdfbtn2 {
@@ -319,11 +319,11 @@ body {
   margin-top: 50px;
 }
 
-#select:hover {
+#select:hover ,#status:hover {
   border-color: #2196f3;
 }
 
-#select:focus {
+#select:focus ,#status:focus  {
   border-color: #2196f3;
   box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.15);
 }

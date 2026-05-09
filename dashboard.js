@@ -155,17 +155,23 @@ function openReport(){
 
     document.getElementById("asset-sec").style.display="none";
     document.getElementById("repo-sec").style.display="block";
+
     let tableA=document.getElementById("assetTable");
     let tableR =document.getElementById("repoTable");
-    let selected = document.getElementById("select").value ;
+
+    let selected = document.getElementById("select").value.trim().toLowerCase();
+    let selectedStatus = document.getElementById("status").value.trim().toLowerCase();
     tableR.innerHTML = ''; //taki new time click krne par row vapis se ayye naki pichle wali row mai appned ho
     
     for(let i =0 ; i<tableA.rows.length ;i++){
-        let cellValue = tableA.rows[i].cells[2].innerText;
-
-        if(selected === "ALL" || cellValue === selected){
+        
+        let cellValue = tableA.rows[i].cells[2].innerText.trim().toLowerCase();
+        let statusValue = tableA.rows[i].cells[4].innerText.trim().toLowerCase();
+        
+        if((selected === "all" || cellValue === selected) && (selectedStatus === "all" || statusValue === selectedStatus)){
             tableR.innerHTML += tableA.rows[i].outerHTML;
         }
+
     }
     
 }
@@ -210,3 +216,7 @@ function edit(){
         
     })
 }
+
+
+
+

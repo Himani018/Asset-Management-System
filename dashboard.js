@@ -10,77 +10,27 @@ function logout() {
 }
 
 // Add Asset
-function addAsset() {
-    let name = prompt("Enter Asset Name:");
-    let category = prompt("Enter Category:");
-    let assignee = prompt("Enter Assignee Name:");
-
-    if (!name || !category || !assignee) {
-        alert("All fields are required!");
-        return;
-    }
-
-    let table = document.getElementById("assetTable");
-
-    let newId = 1;
-    //ye banaya taki asset add krne ke baad ye hat jaye ..no asser found wala 
-    if(table.rows.length<1){
-       let starting = document.getElementById("noasset");
-       starting.style.display='none';
-    }
-
-    if (table.rows.length >= 1) {
-        let lastRow = table.rows[table.rows.length - 1]; //will accecess the last row by itt
-        let lastId = lastRow.cells[0].innerText;
-        newId = parseInt(lastId) + 1;
-    }
-
-    let newRow = `
-        <tr id ='${newId}'>
-            <td>${newId}</td>
-            <td>${name}</td>
-            <td>${category}</td>
-            <td>${assignee}</td>
-            <td><span class="badge bg-success">Active</span></td>
-        </tr>
-    `;
-
-    table.innerHTML += newRow;
+function hideForms() {
+  document.getElementById("addBox").style.display = "none";
+  document.getElementById("editBox").style.display = "none";
+  document.getElementById("deleteBox").style.display = "none";
 }
-// end add asset option
 
-
-function deleteAsset(){
-    let table = document.getElementById("assetTable");
-    let del =prompt("Enter the asset id you want to delete");
-    let delrow = document.getElementById(del);
-    if(delrow){
-        delrow.remove();
-    }
-    if(table.rows.length==0){
-       setTimeout(()=>{
-         let starting = document.getElementById("noasset");
-         starting.style.display='block';
-       },2000);
-    }
- }
-
-function editAsset(){
-    let id= prompt("Enter asset id");
-    let name = prompt("Edit Asset Name:");
-    let category = prompt("Edit Category:");
-    let assignee = prompt("Edit Assignee Name:");
-
-    if (!id || !name || !category || !assignee) {
-        alert("All fields are required!");
-        return;
-    }
-     
-    let row = document.getElementById(id);
-    row.cells[1].innerHTML=name;
-    row.cells[2].innerHTML=category;
-    row.cells[3].innerHTML=assignee;
+function showAdd() {
+  hideForms();
+  document.getElementById("addBox").style.display = "flex";
 }
+
+function showEdit() {
+  hideForms();
+  document.getElementById("editBox").style.display = "flex";
+}
+
+function showDelete() {
+  hideForms();
+  document.getElementById("deleteBox").style.display = "flex";
+}
+
 
 const search = document.getElementById("searchBar");
 const table1 = document.getElementById("assetTable");

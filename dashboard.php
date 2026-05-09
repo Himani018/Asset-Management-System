@@ -1,19 +1,40 @@
 <?php
 session_start();
-if( ! isset($_SESSION['username']) ){
-    $_SESSION['username']= 'user';
+
+//to get asset table
+require_once __DIR__ . "/includes/dbh.inc.php";
+
+$userId = $_SESSION['user_id'];
+
+$query = "SELECT id, asset, category, assignee, stat
+          FROM assets
+          WHERE user_id = :user_id
+          ORDER BY id DESC";
+
+$stmt = $pdo->prepare($query);
+$stmt->bindParam(":user_id", $userId, PDO::PARAM_INT);
+$stmt->execute();
+$assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//to get asset table
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit;
+}
+if (!isset($_SESSION['username'])) {
+    $_SESSION['username'] = 'user';
 
 }
-if( ! isset($_SESSION['email']) ){
-        $_SESSION['email']= 'user@email.com' ;
+if (!isset($_SESSION['email'])) {
+    $_SESSION['email'] = 'user@email.com';
 
 }
-if( ! isset($_SESSION['company']) ){
-    $_SESSION['company']= 'bluevault';
+if (!isset($_SESSION['company'])) {
+    $_SESSION['company'] = 'bluevault';
 
 }
-if( ! isset($_SESSION['role']) ){
-        $_SESSION['role']= 'manager' ;
+if (!isset($_SESSION['role'])) {
+    $_SESSION['role'] = 'manager';
 
 }
 
@@ -46,12 +67,12 @@ if( ! isset($_SESSION['role']) ){
             <a href="#sett-sec" id="setting"><i class="fa-solid fa-gear"></i> Settings</a>
         </div>
     </div>
-  <!-- sidebar enddddddd -->
-    
-  <!-- right side bar start -->
+    <!-- sidebar enddddddd -->
+
+    <!-- right side bar start -->
     <div class="main">
 
-       
+
         <div id="dash-sec">
 
             <div class="profile" onclick="toggleMenu()">
@@ -65,147 +86,89 @@ if( ! isset($_SESSION['role']) ){
         </div>
 
         <div id="asset-sec">
+
+
             <div id="assetWrap">
-            <div class="topbar">
-                <input type="text" class="form-control w-50" placeholder="Search asset by id..." id="searchBar">
-                <button onclick="generatePDF()" class="btn pdf mb-3">Download As PDF</button>
-            </div>
-            <button class="btn btn-primary mb-3" onclick="addAsset()">+ Add Asset</button>
-            <button class="btn btn-primary mb-3" onclick="deleteAsset()">- Delete Asset</button>
-            <button class="btn btn-primary mb-3" onclick="editAsset()">* Edit Asset</button>
+                <div class="topbar">
+                    <input type="text" class="form-control w-50" placeholder="Search asset by id..." id="searchBar">
+                    <button onclick="generatePDF()" class="btn pdf mb-3">Download As PDF</button>
 
-            <div id="pdf">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr >
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Assignee</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
+                </div>
+                <button class="btn btn-primary mb-3" type="button" onclick="showAdd()">+ Add Asset</button>
+                <button class="btn btn-primary mb-3" type="button" onclick="showDelete()">- Delete Asset</button>
+                <button class="btn btn-primary mb-3" type="button" onclick="showEdit()">* Edit Asset</button>
+                <?php
+                if (isset($_SESSION["asset_success"])) {
+                    echo '<p class="text-success">'
+                        . htmlspecialchars($_SESSION["asset_success"]) . '</p>';
+                    unset($_SESSION["asset_success"]);
+                }
+                if (isset($_SESSION["asset_error"])) {
+                    echo '<p class="text-danger">'
+                        . htmlspecialchars($_SESSION["asset_error"]) . '</p>';
+                    unset($_SESSION["asset_error"]);
+                }
+                ?>
 
-                    <tbody id="assetTable">
-                        <tr id="1" >
-                            <td >1</td>
-                            <td>Laptop Pro</td>
-                            <td>Electronic</td>
-                            <td>John Doe</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                        </tr>
-                        <tr id="2">
-                            <td>2</td>
-                            <td>Office Chair</td>
-                            <td>furniture</td>
-                            <td>Jane Smith</td>
-                            <td><span class="badge bg-warning">Maintenence</span></td>
-                        </tr>
-                        <tr id="3">
-                            <td>3</td>
-                            <td>Mouse Pad</td>
-                            <td>accessories</td>
-                            <td>Bob Wilson</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                        </tr>
-                        <tr id="4">
-                            <td>4</td>
-                            <td>Office Desk</td>
-                            <td>furniture</td>
-                            <td>Alice Johnson</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                        </tr>
-                        <tr id="5">
-                            <td>5</td>
-                            <td>Wireless Keyboard</td>
-                            <td>accessories</td>
-                            <td>Charlie Brown</td>
-                            <td><span class="badge bg-warning">Maintenance</span></td>
-                        </tr>
-                        <tr id="6">
-                            <td>6</td>
-                            <td>Monitor 24inch</td>
-                            <td>Electronic</td>
-                            <td>Diana Prince</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                        </tr>
-                        <tr id="7">
-                            <td>7</td>
-                            <td>Printer Laser</td>
-                            <td>Electronic</td>
-                            <td>John Doe</td>
-                            <td><span class="badge bg-danger">Retired</span></td>
-                        </tr>
-                        <tr id="8">
-                            <td>8</td>
-                            <td>Webcam HD</td>
-                            <td>accessories</td>
-                            <td>Jane Smith</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                        </tr>
-                        <tr id="9">
-                            <td>9</td>
-                            <td>Headset Wireless</td>
-                            <td>accessories</td>
-                            <td>Bob Wilson</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                        </tr>
-                        <tr id="10">
-                            <td>10</td>
-                            <td>UPS Backup</td>
-                            <td>Electronic</td>
-                            <td>Alice Johnson</td>
-                            <td><span class="badge bg-warning">Maintenance</span></td>
-                        </tr>
-                        <tr id="11">
-                            <td>11</td>
-                            <td>Projector</td>
-                            <td>Electronic</td>
-                            <td>Charlie Brown</td>
-                            <td><span class="badge bg-success">Active</span></td>
-                        </tr>
-                    </tbody>
+                <!-- --------------------------------------------------- -->
 
-                </table>
-            </div>
-            <div id="noasset" style="display:none;">
+                <div id="addBox" style="display:none;">
+                    <h5>Add Asset</h5>
+                    <form action="includes/asset_add.php" method="post">
+                        <input class="form-control w-50" name="asset" placeholder="Asset name" required>
+                        <input class="form-control w-50" name="category" placeholder="Category" required>
+                        <input class="form-control w-50" name="assignee" placeholder="Assignee" required>
 
-                <p>No asset Found 😟</p>
+                        <select class="form-control w-50" name="stat" required>
+                            <option value="Active">Active</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Retired">Retired</option>
+                        </select>
 
-                <p>There are no asset available at this moment !!</p>
-                <p><i class="fa-solid fa-box-open"></i> </p>
-            </div>
-          </div>
-        </div>
-<!-- asset sec enddddddddddddddddd -->
+                        <button class="btn btn-primary mt-2" type="submit">Save</button>
+                        <button class="btn btn-secondary mt-2" type="button" onclick="hideForms()">Cancel</button>
+                    </form>
+                </div>
 
-        <div id="repo-sec">
-          <div id="repoWrap">
-            <button onclick="generatePDF2()" class="btn pdf mb-3" id="pdfbtn2">Download As PDF</button>
-            <p id="repoBadge">REPORTING WORKSPACE</p>
-            <h2>Asset Report</h2>
-            <p id="repoP">Filter the inventory by category, preview the result in one place ,and export a clean pdf when the report
-                is ready
-            </p>
-            <div id="repo-sel">
-            <p>Report Category</p>
-            <select name="" id="select">
-                <option value="ALL" selected>ALL</option>
-                <option value="Electronic">Electronic</option>
-                <option value="furniture">furniture</option>
-                <option value="accessories">accessories</option>
-            </select>
-            <button class="btn btn-primary mb-3" onclick="openReport()" id="genBtn">Generate</button>
-             </div>
+                <!-- edit asset-->
 
-            <div id="report">
-                <h6>Preview</h6>
-                <p id="#p2">Your filtered row will appear here and stay export - ready for pdf download</p>
-                <h3>Generated Asset report</h3>
-                <div id="pdf2">
+                <div id="editBox" style="display:none;">
+                    <h5>Edit Asset</h5>
+                    <form action="includes/asset_update.php" method="post">
+                        <input class="form-control w-50" name="id" placeholder="Asset ID" required>
+                        <input class="form-control w-50" name="asset" placeholder="New asset name" required>
+                        <input class="form-control w-50" name="category" placeholder="New category" required>
+                        <input class="form-control w-50" name="assignee" placeholder="New assignee" required>
 
-                    <!-- Table -->
-                    <table class="table table-bordered" style="margin-top: 40px;">
+                        <select class="form-control w-50" name="stat" required>
+                            <option value="Active">Active</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Retired">Retired</option>
+                        </select>
+
+                        <button class="btn btn-primary mt-2" type="submit">Update</button>
+                        <button class="btn btn-secondary mt-2" type="button" onclick="hideForms()">Cancel</button>
+                    </form>
+                </div>
+
+                <!-- delete asset -->
+
+                <div id="deleteBox" style="display:none;">
+                    <h5>Delete Asset</h5>
+                    <form action="includes/asset_delete.php" method="post">
+                        <input class="form-control w-50" name="id" placeholder="Asset ID" required>
+                        <button class="btn btn-danger mt-2" type="submit">Delete</button>
+                        <button class="btn btn-secondary mt-2" type="button" onclick="hideForms()">Cancel</button>
+                    </form>
+                </div>
+
+
+
+                <!-- --------------------------------------------------- -->
+
+
+                <div id="pdf">
+                    <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -216,49 +179,142 @@ if( ! isset($_SESSION['role']) ){
                             </tr>
                         </thead>
 
-                        <tbody id="repoTable">
-                        </tbody>
-                    </table>
+                        <tbody id="assetTable">
+                            <?php if (!empty($assets)): ?>
+                                <?php foreach ($assets as $a): ?>
+                                    <?php
+                                    $status = $a['stat'] ?? '';
+                                    $badgeClass = 'bg-secondary';
 
+                                    if (strtolower($status) === 'active')
+                                        $badgeClass = 'bg-success';
+                                    elseif (strtolower($status) === 'maintenance')
+                                        $badgeClass = 'bg-warning';
+                                    elseif (strtolower($status) === 'retired')
+                                        $badgeClass = 'bg-danger';
+                                    ?>
+
+                                    <tr id="<?php echo htmlspecialchars($a['id']); ?>">
+                                        <td><?php echo htmlspecialchars($a['id']); ?></td>
+                                        <td><?php echo htmlspecialchars($a['asset']); ?></td>
+                                        <td><?php echo htmlspecialchars($a['category']); ?></td>
+                                        <td><?php echo htmlspecialchars($a['assignee']); ?></td>
+                                        <td><span class="badge <?php echo $badgeClass; ?>">
+                                                <?php echo htmlspecialchars($status); ?>
+                                            </span></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </tbody>
+
+
+                    </table>
+                </div>
+                <div id="noasset" style="<?php echo empty($assets) ? 'display:block;' : 'display:none;'; ?>">
+
+
+                    <p>No asset Found 😟</p>
+
+                    <p>There are no asset available at this moment !!</p>
+                    <p><i class="fa-solid fa-box-open"></i> </p>
                 </div>
             </div>
         </div>
+        <!-- asset sec enddddddddddddddddd -->
+
+        <div id="repo-sec">
+            <div id="repoWrap">
+                <button onclick="generatePDF2()" class="btn pdf mb-3" id="pdfbtn2">Download As PDF</button>
+                <p id="repoBadge">REPORTING WORKSPACE</p>
+                <h2>Asset Report</h2>
+                <p id="repoP">Filter the inventory by category, preview the result in one place ,and export a clean pdf
+                    when the report
+                    is ready
+                </p>
+                <div id="repo-sel">
+                    <p>Report Category</p>
+
+                    <?php if (!empty($assets)): ?>
+                        <select name="" id="select">
+                            <option value="ALL" selected>ALL</option>
+                            <?php foreach ($assets as $a): ?>
+                                <option value="<?php echo htmlspecialchars($a['category']) ?>">
+                                    <?php echo htmlspecialchars($a['category']) ?></option>
+
+                            <?php endforeach ?>
+                        </select>
+                    <?php endif ?>
+
+                    
+
+                    <button class="btn btn-primary mb-3" onclick="openReport()" id="genBtn">Generate</button>
+                </div>
+
+                <div id="report">
+                    <h6>Preview</h6>
+                    <p id="#p2">Your filtered row will appear here and stay export - ready for pdf download</p>
+                    <h3>Generated Asset report</h3>
+                    <div id="pdf2">
+
+                        <!-- Table -->
+                        <table class="table table-bordered" style="margin-top: 40px;">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Category</th>
+                                    <th>Assignee</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="repoTable">
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
         </div>
 
 
         <div id="sett-sec">
 
             <div id="set-card2">
-                
+
                 <h5>Personal Information</h5>
-                    <button onclick="edit()" id="edit" class="btn pdf mb-3">Edit</button>
-                <form  id="changedForm" method="post" action="includes/change.php">
-            
-                <button class="btn pdf mb-3" id="save" type="submit">Save Changes</button>
-                <p>Keep Your Account details current and correct for asset assignment and reporting.</p>
-                <label for="name">Name:</label>
-                <input class="form-control w-50" type="text" name="username" id="name" readonly  value="<?php echo htmlspecialchars($_SESSION['username']) ?>" >
-                <label  for="name">Email:</label>
-                <input class="form-control w-50" type="email" name="email" value="<?php echo htmlspecialchars($_SESSION['email']) ?>" id="email" readonly>
-                <label  for="name">Company:</label>
-                <input class="form-control w-50" type="company" name="company" value="<?php echo htmlspecialchars($_SESSION['company']) ?>" id="company" readonly>
-                <label  for="name">Role:</label>
-                <input class="form-control w-50" type="role" name="role" value="<?php echo htmlspecialchars($_SESSION['role']) ?>" id="role" readonly>
-                 <?php
-                 if(isset($_SESSION['success'])){
-                    echo '<p class="text-success">'. htmlspecialchars($_SESSION['success']) .'</p>';
-                    unset($_SESSION['success']);
-                 }
-                 if(isset($_SESSION['empty'])){
-                    echo '<p class="text-danger">'. htmlspecialchars($_SESSION['empty']) .'</p>';
-                    unset($_SESSION['empty']);
-                 }
-                 if(isset($_SESSION['loginE'])){
-                    echo '<p class="text-danger">'. htmlspecialchars($_SESSION['loginE']) .'</p>';
-                    unset($_SESSION['loginE']);
-                 }
-                 ?>
-             </form>
+                <button onclick="edit()" id="edit" class="btn pdf mb-3">Edit</button>
+                <form id="changedForm" method="post" action="includes/change.php">
+
+                    <button class="btn pdf mb-3" id="save" type="submit">Save Changes</button>
+                    <p>Keep Your Account details current and correct for asset assignment and reporting.</p>
+                    <label for="name">Name:</label>
+                    <input class="form-control w-50" type="text" name="username" id="name" readonly
+                        value="<?php echo htmlspecialchars($_SESSION['username']) ?>">
+                    <label for="name">Email:</label>
+                    <input class="form-control w-50" type="email" name="email"
+                        value="<?php echo htmlspecialchars($_SESSION['email']) ?>" id="email" readonly>
+                    <label for="name">Company:</label>
+                    <input class="form-control w-50" type="company" name="company"
+                        value="<?php echo htmlspecialchars($_SESSION['company']) ?>" id="company" readonly>
+                    <label for="name">Role:</label>
+                    <input class="form-control w-50" type="role" name="role"
+                        value="<?php echo htmlspecialchars($_SESSION['role']) ?>" id="role" readonly>
+                    <?php
+                    if (isset($_SESSION['success'])) {
+                        echo '<p class="text-success">' . htmlspecialchars($_SESSION['success']) . '</p>';
+                        unset($_SESSION['success']);
+                    }
+                    if (isset($_SESSION['empty'])) {
+                        echo '<p class="text-danger">' . htmlspecialchars($_SESSION['empty']) . '</p>';
+                        unset($_SESSION['empty']);
+                    }
+                    if (isset($_SESSION['loginE'])) {
+                        echo '<p class="text-danger">' . htmlspecialchars($_SESSION['loginE']) . '</p>';
+                        unset($_SESSION['loginE']);
+                    }
+                    ?>
+                </form>
             </div>
             <p style="color: rgb(84, 84, 250);">WORKSPACE CONTROL CENTER</p>
             <h3> <i class="fa-solid fa-user-gear"></i>Settings</h3>
@@ -266,16 +322,16 @@ if( ! isset($_SESSION['role']) ){
 
             <div class="set-card">
                 <img src="./defaultPfp.jpg" alt="Oops!!Something went wrong." id="defaultPfp">
-                <h5> <?php  echo htmlspecialchars($_SESSION['username']) ?>  </h5>
-                <p id="role2"> <?php  echo htmlspecialchars($_SESSION['role']) ?>  </p>
+                <h5> <?php echo htmlspecialchars($_SESSION['username']) ?> </h5>
+                <p id="role2"> <?php echo htmlspecialchars($_SESSION['role']) ?> </p>
                 <button class="btn btn-primary mb-3" id="uploadBtn" onclick="changePfp()">Change Image</button>
                 <input type="file" id="imageUpload" accept="image/*" hidden>
             </div>
 
         </div>
     </div>
-<!-- right side bar end -->
-<script src="dashboard.js?v=2"></script>
+    <!-- right side bar end -->
+    <script src="dashboard.js?v=2"></script>
 </body>
 
 <script>

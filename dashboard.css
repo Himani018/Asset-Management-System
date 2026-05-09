@@ -1,270 +1,264 @@
-
 :root {
-    --primary: #f7f8fa;
-    --secondary:rgb(37, 152, 197);
-    --third:#e8f7f3;
+  --primary: #f7f8fa;
+  --secondary: rgb(37, 152, 197);
+  --third: #e8f7f3;
 }
 
 body {
-    display: flex;
-    height: 100vh;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--third);
+  display: flex;
+  height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--third);
 }
 
 .sidebar {
-    width: 250px;
-    background: #079fce;
-    padding: 20px;
-    position: fixed;
-    top: 0; 
-    left: 0;      
-    height: 100vh;    
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
+  width: 250px;
+  background: #079fce;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar h4 {
-    color: var(--primary);
-    margin: 0;
+  color: var(--primary);
+  margin: 0;
 }
 
 .sidebar-links {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin-top: 2px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin-top: 2px;
 }
 
 .sidebar a {
-    margin-top: 0;
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    color: #333;
-    text-decoration: none;
-    border-radius: 8px;
-    background-color: #fbfdff;
-    
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 8px;
+  background-color: #fbfdff;
 }
 
 .sidebar a:hover {
-    background: rgb(89, 188, 245) ;
-    color: white;
-    box-shadow:
-    0 4px 10px rgba(0,0,0,0.1),
-    0 0 10px rgba(34,211,238,0.5),
-    0 0 20px rgba(6,182,212,0.4);
-    transition: 0.3s ease;
-
+  background: rgb(89, 188, 245);
+  color: white;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.1),
+    0 0 10px rgba(34, 211, 238, 0.5),
+    0 0 20px rgba(6, 182, 212, 0.4);
+  transition: 0.3s ease;
 }
 .main {
-    flex: 1;
-    padding: 20px;
-    margin-left: 250px; 
-    height: 100vh;
-    overflow-y: auto; 
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .topbar {
-    display:flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .profile {
-    position: relative;
-    cursor: pointer;
-    margin-left: 940px;
+  position: relative;
+  cursor: pointer;
+  margin-left: 940px;
 }
 
 .profile-menu {
-    position: absolute;
-    right: 0;
-    top: 40px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    display: none;
-    width: 150px;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  width: 150px;
 }
 
 .profile-menu a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
 }
 
 .profile-menu a:hover {
-    background: #f1f5f9;
+  background: #f1f5f9;
 }
-#searchBar{
-    border:1px solid #6ecaf1;
+#searchBar {
+  border: 1px solid #6ecaf1;
 }
 .table thead {
-    background: var(--primary);
-    color: white;
+  background: var(--primary);
+  color: white;
 }
 
-.btn-primary ,.pdf {
-    background-color: var(--secondary);
-    border: none;
+.btn-primary,
+.pdf {
+  background-color: var(--secondary);
+  border: none;
 }
-.pdf{
-    color: white;
-    position: relative;
-    margin-left: 150px;
-    display:block;
-    margin-top: 10px;
+.pdf {
+  color: white;
+  position: relative;
+  margin-left: 150px;
+  display: block;
+  margin-top: 10px;
 }
-.pdf:hover , .btn-primary:hover{
-        background: rgb(92, 174, 221) ;
-        color: white;
+.pdf:hover,
+.btn-primary:hover {
+  background: rgb(92, 174, 221);
+  color: white;
 }
-#asset-sec{
-    display: none;
+#asset-sec {
+  display: none;
 }
-#dash-sec{
-    display: block;
+#dash-sec {
+  display: block;
 }
-#repo-sec{
-    display: none;
+#repo-sec {
+  display: none;
 }
-#sett-sec{
-    display: none;
-    position: relative;
-    p{
-        color: #7e7676;
-        width: 290px;
-    }
+#sett-sec {
+  display: none;
+  position: relative;
+  p {
+    color: #7e7676;
+    width: 290px;
+  }
 }
-#dashboard{
-    margin-top: 0;
+#dashboard {
+  margin-top: 0;
 }
-.form-control:hover{
-    border-color: #2563eb;
+.form-control:hover {
+  border-color: #2563eb;
 }
-.set-card{
-    background-color: #ffffff;
-    height: 400px;
-    width: 250px;
-    border-radius: 30px;
-    box-shadow: inset;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 10px;
-    p{
-        color: #7e7676;
-    }
+.set-card {
+  background-color: #ffffff;
+  height: 400px;
+  width: 250px;
+  border-radius: 30px;
+  box-shadow: inset;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  p {
+    color: #7e7676;
+  }
 }
 
-#set-card2{
-    background-color: #ffffff;
-    height: 500px;
-    width: 700px;
-    border-radius: 30px;
-    padding: 30px;
+#set-card2 {
+  background-color: #ffffff;
+  height: 500px;
+  width: 700px;
+  border-radius: 30px;
+  padding: 30px;
+  position: absolute;
+  margin-left: 280px;
+  margin-top: 45px;
+  p {
+    color: #7e7676;
+    width: 500px;
+  }
+  label {
+    margin-top: 20px;
+    /* display: flex; */
+    /* flex-direction: row; */
+  }
+  #edit {
     position: absolute;
-    margin-left: 280px;
-    margin-top: 45px;
-    p{
-        color: #7e7676;
-        width: 500px;
-    }
-    label{
-        margin-top: 20px;
-        /* display: flex; */
-        /* flex-direction: row; */
-    }
-    #edit{
-        position: absolute; 
-        margin-left: 450px;
-        border-radius: 10px;
-        width: 70px;
-        margin-top: 40px;
-        
-    }
-    #save{
-        position: absolute; 
-        margin-left: 530px;
-        border-radius: 10px;
-        margin-top: 40px;
-        
-    }
-
+    margin-left: 450px;
+    border-radius: 10px;
+    width: 70px;
+    margin-top: 40px;
+  }
+  #save {
+    position: absolute;
+    margin-left: 530px;
+    border-radius: 10px;
+    margin-top: 40px;
+  }
 }
-#assetWrap{
-    background-color: #ffffff;
-    min-height: 100vh;
-    width: 980px;
-    border-radius: 30px;
-    padding: 14px 30px 30px;
-    position: relative;
+#assetWrap {
+  background-color: #ffffff;
+  min-height: 100vh;
+  width: 980px;
+  border-radius: 30px;
+  padding: 14px 30px 30px;
+  position: relative;
 }
-#repoWrap{
-    background-color: #ffffff;
-    min-height: 100vh;
-    width: 980px;
-    border-radius: 30px;
-    padding: 14px 30px 30px;
-    position: relative;
-    #pdfbtn2{
+#repoWrap {
+  background-color: #ffffff;
+  min-height: 100vh;
+  width: 980px;
+  border-radius: 30px;
+  padding: 14px 30px 30px;
+  position: relative;
+  #pdfbtn2 {
     margin-left: 0;
     margin-top: 0;
     position: absolute;
     top: 14px;
     right: 30px;
-   }
-   #repo-sel{
-
+  }
+  #repo-sel {
     background-color: #ffffff;
     border-radius: 20px;
     width: 920px;
     height: 100px;
     padding: 10px;
     box-shadow: 0 5px 18px rgb(209, 208, 208);
-    
-    p{
-        font-size: 12px;
-        font-weight: bold;
-        margin-left: 20px;
-        margin-bottom: 5px;
+
+    p {
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 20px;
+      margin-bottom: 5px;
     }
-   }
-   #select{
-    width:250px;
-    padding:9px 12px;
-    border:1px solid #6ecaf1;
-    border-radius:6px;
-    background-color:#ffffff;
-    color:#2c3e50;
-    font-size:14px;
-    outline:none;
-    cursor:pointer;
-    transition:all 0.2s ease;
+  }
+  #select {
+    width: 250px;
+    padding: 9px 12px;
+    border: 1px solid #6ecaf1;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #2c3e50;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
     margin-left: 10px;
-    
-   }
-   #genBtn{
+  }
+  #genBtn {
     margin-left: 500px;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-   }
-   #pdfbtn2{
-    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
-   }
-   #repoP{
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  }
+  #pdfbtn2 {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  }
+  #repoP {
     color: grey;
     width: 710px;
   }
-  #report{
+  #report {
     margin-top: 30px;
     background-color: #ffffff;
     border-radius: 20px;
@@ -273,80 +267,137 @@ body {
     padding: 20px;
     box-shadow: 0 5px 18px rgb(209, 208, 208);
     position: relative;
-    h3{
-        margin-top: 10px;
+    h3 {
+      margin-top: 10px;
     }
-    h6{
-        background-color: #b2f1e2;
-        border-radius: 5px;
-        width: 70px;
-        padding: 5px;
+    h6 {
+      background-color: #b2f1e2;
+      border-radius: 5px;
+      width: 70px;
+      padding: 5px;
     }
-    p{
-        color: #6b6a6a;
-        margin-left: 400px;
-        width: 500px;
-        position: absolute;
+    p {
+      color: #6b6a6a;
+      margin-left: 400px;
+      width: 500px;
+      position: absolute;
     }
   }
 }
 
-#repoBadge{
-    display: inline-block;
-    margin-top: 0;
-    margin-bottom: 12px;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background-color: #e8f7fb;
-    color: #2f9bc3;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
+#repoBadge {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background-color: #e8f7fb;
+  color: #2f9bc3;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
-#repoWrap h2{
-    margin-top: 0;
+#repoWrap h2 {
+  margin-top: 0;
 }
 
-#noasset p:nth-child(1){
-    display: block;
-    margin-left: 350px;
-    font-size: x-large;
-    color: rgb(253, 106, 87);
+#noasset p:nth-child(1) {
+  display: block;
+  margin-left: 350px;
+  font-size: x-large;
+  color: rgb(253, 106, 87);
 }
-#noasset p:nth-child(2){
-    margin-left: 300px;
-    color:#6c8fa3;
+#noasset p:nth-child(2) {
+  margin-left: 300px;
+  color: #6c8fa3;
 }
-#noasset p:nth-child(3){
-    margin-left: 380px;
-    font-size:100px;
-    color:#6c8fa3;
-    margin-top: 50px;
-
-}
-
-
-#select:hover{
-    border-color:#2196f3;
+#noasset p:nth-child(3) {
+  margin-left: 380px;
+  font-size: 100px;
+  color: #6c8fa3;
+  margin-top: 50px;
 }
 
-#select:focus{
-    border-color:#2196f3;
-    box-shadow:0 0 0 2px rgba(33,150,243,0.15);
-}
-#p{
-    position:absolute;
-    margin-top: 10px; 
-    margin-left: 650px;
-}
-#defaultPfp{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid #2196f3;
-    margin: 0 0 18px 0;
-    display: block;
+#select:hover {
+  border-color: #2196f3;
 }
 
+#select:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.15);
+}
+#p {
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 650px;
+}
+#defaultPfp {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2196f3;
+  margin: 0 0 18px 0;
+  display: block;
+}
+
+/* ===== Asset Forms Popup (Modal) ===== */
+#addBox,
+#editBox,
+#deleteBox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* JS will set to flex */
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.45);
+  padding: 24px;
+  box-sizing: border-box;
+
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#addBox h5,
+#editBox h5,
+#deleteBox h5 {
+  margin: 0;
+  color: #fff;
+}
+
+#addBox form,
+#editBox form,
+#deleteBox form {
+  width: 100%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* buttons side-by-side */
+  gap: 12px;
+}
+
+/* inputs/select should take full row */
+#addBox form input,
+#addBox form select,
+#editBox form input,
+#editBox form select,
+#deleteBox form input,
+#deleteBox form select {
+  grid-column: 1 / -1;
+}
+
+/* make your w-50 look normal inside popup */
+#addBox .w-50,
+#editBox .w-50,
+#deleteBox .w-50 {
+  width: 100% !important;
+}

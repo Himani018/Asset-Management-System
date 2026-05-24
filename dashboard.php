@@ -17,17 +17,57 @@ $stmt->execute();
 $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //to get asset table
 
-$statusCounts = array_count_values(array_column($assets, 'stat'));
+
+
+// STATUS COUNTS
 $chartStatusCounts = [
-    $statusCounts['Active'] ?? 0,
-    $statusCounts['Retired'] ?? 0,
-    $statusCounts['Maintenance'] ?? 0,
+    "Active" => 0,
+    "Maintenance" => 0,
+    "Retired" => 0
 ];
 
+// CATEGORY COUNTS
+$categoryCounts = [];
+
+// ASSIGNEE COUNTS
+$assigneeCounts = [];
+
+foreach ($assets as $asset) {
+
+    // STATUS
+    $status = trim($asset['stat']);
+
+    if (isset($chartStatusCounts[$status])) {
+        $chartStatusCounts[$status]++;
+    }
+
+    // CATEGORY
+    $category = strtolower(trim($asset['category']));
+
+    if (!isset($categoryCounts[$category])) {
+        $categoryCounts[$category] = 0;
+    }
+
+    $categoryCounts[$category]++;
+
+    // ASSIGNEE
+    $assignee = trim($asset['assignee']);
+
+    if (!isset($assigneeCounts[$assignee])) {
+        $assigneeCounts[$assignee] = 0;
+    }
+
+    $assigneeCounts[$assignee]++;
+}
+$totalAssets = count($assets);
+
+$activeAssets = $chartStatusCounts['Active'];
+$maintenanceAssets = $chartStatusCounts['Maintenance'];
+$retiredAssets = $chartStatusCounts['Retired'];
 // Unique categories for report filter (lowercased to keep consistent)
 $categories = [];
 foreach ($assets as $a) {
-    $cat = strtolower(trim((string)($a['category'] ?? '')));
+    $cat = strtolower(trim((string) ($a['category'] ?? '')));
     if ($cat === '') {
         continue;
     }
@@ -72,7 +112,8 @@ if (!isset($_SESSION['role'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
         integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha256-SERKgtTty1vsDxll+qzd4Y2cF9swY9BCq62i9wXJ9Uo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"
+        integrity="sha256-SERKgtTty1vsDxll+qzd4Y2cF9swY9BCq62i9wXJ9Uo=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -93,53 +134,76 @@ if (!isset($_SESSION['role'])) {
     <!-- right side bar start -->
     <div class="main">
 
-<!-- dashboard -->
+        <!-- dashboard -->
         <div id="dash-sec">
             <div id="dashWrap">
-            <p style=" position:relative; font-size:15px;" id="dashBadge">Asset Overview</p>
-            <h1>Dashboard</h1>
-            <p style="color: grey;">Quick insights about your inventory across status, category, Assignee.</p>
-        <!-- for logout -->
-            <div class="profile" onclick="toggleMenu()">
-                <i class="fa-solid fa-user-circle fa-2x"></i>
-                <div class="profile-menu" id="menu">
-                    <a href="#" onclick="profile()"><i class="fa fa-user"></i> Profile </a>
-                    <a href="#" onclick="logout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                <p style=" position:relative; font-size:15px;" id="dashBadge">Asset Overview</p>
+                <h1>Dashboard</h1>
+                <p style="color: grey;">Quick insights about your inventory across status, category, Assignee.</p>
+                <!-- for logout -->
+                <div class="profile" onclick="toggleMenu()">
+                    <i class="fa-solid fa-user-circle fa-2x"></i>
+                    <div class="profile-menu" id="menu">
+                        <a href="#" onclick="profile()"><i class="fa fa-user"></i> Profile </a>
+                        <a href="#" onclick="logout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                    </div>
                 </div>
-            </div>
-         <!--  -->
+                <!--  -->
+            
                 <div class="dashMetrics">
-                    <div class="dashBox">Total Asset</div>
-                    <div class="dashBox" style=" margin-left:230px ;">Active</div>
-                    <div class="dashBox" style=" margin-left:470px ;">Maintenence</div>
-                    <div class="dashBox" style=" margin-left:700px ;">Retired</div>
+                    <div class="dashBox">
+                        <p>Total Asset</p>
+                        <h2><?php echo $totalAssets; ?></h2>
+                    </div>
+                    <div class="dashBox" style=" margin-left:230px ;">
+                        <p>Active</p>
+                        <h2><?php echo $activeAssets; ?></h2>
+                    </div>
+                    <div class="dashBox" style=" margin-left:470px ;">
+                        <p>Maintenance</p>
+                        <h2><?php echo $maintenanceAssets; ?></h2>
+                    </div>
+                    <div class="dashBox" style=" margin-left:700px ;">
+                        <p>Retired</p>
+                        <h2><?php echo $retiredAssets; ?></h2>
+                    </div>
                 </div>
                 <div class="dashGraphs">
                     <div class="graph" id="g1">
-                    <h3>Assets by status</h3>
-                    <div class="chartWrap">
-                        <canvas id="myChart" aria-label="chart" role="img"></canvas>
-                    </div>
-                      
+                        <h3>Assets by status</h3>
+                     <?php if($assets):?>
+                        <div class="chartWrap">
+                            <canvas id="myChart" aria-label="chart" role="img"></canvas>
+                        </div>
+                     <?php else: ?>
+                        <h3 style="color: grey; margin-top:60px; margin-left:80px;"> Your assets are still waiting to exist.</h3>
+                    <?php endif ?>
+
                     </div>
                     <div class="graph" id="g2">
-
-                    <h3>Assets by category</h3>
-                    <div class="chartWrap">
-                        <canvas id="Chart" aria-label="chart" role="img"></canvas>
-                    </div>
-
+                        <h3>Assets by category</h3>
+                    <?php if($assets):?>
+                        <div class="chartWrap">
+                            <canvas id="Chart" aria-label="chart" role="img"></canvas>
+                        </div>
+                      <?php else: ?>
+                        <h3 style="color: grey; margin-top:60px; margin-left:60px;">Looks like your assets forgot to pick a category 😅</h3>
+                    <?php endif ?>
                     </div>
                     <div class="graph graphWide" id="g3">
-                          <h3>Assets by Assignee</h3>
-                          <div class="chartWrap">
-                              <canvas id="AssigneeChart" aria-label="chart" role="img"></canvas>
-                          </div>
+                        <h3>Assets by Assignee</h3>
+                        <?php if($assets):?>
+                        <div class="chartWrap">
+                            <canvas id="AssigneeChart" aria-label="chart" role="img"></canvas>
+                        </div>
+                         <?php else: ?>
+                        <h3 style="color: grey; margin-top:60px; margin-left:80px;"> Your employees are asset-free for now 😎 </h3>
+                    <?php endif ?>
                     </div>
                 </div>
-             </div>        
-         </div>
-<!-- asset sec -->
+            </div>
+        </div>
+        <!-- asset sec -->
         <div id="asset-sec">
 
 
@@ -171,7 +235,8 @@ if (!isset($_SESSION['role'])) {
                     <h5>Add Asset</h5>
                     <form action="includes/asset_add.php" method="post">
                         <input class="form-control w-50" name="asset" placeholder="Asset name" required>
-                        <input class="form-control w-50" name="category" placeholder="Category" required oninput="this.value=this.value.toLowerCase()">
+                        <input class="form-control w-50" name="category" placeholder="Category" required
+                            oninput="this.value=this.value.toLowerCase()">
                         <input class="form-control w-50" name="assignee" placeholder="Assignee" required>
 
                         <select class="form-control w-50" name="stat" required>
@@ -192,7 +257,8 @@ if (!isset($_SESSION['role'])) {
                     <form action="includes/asset_update.php" method="post">
                         <input class="form-control w-50" name="id" placeholder="Asset ID" required>
                         <input class="form-control w-50" name="asset" placeholder="New asset name" required>
-                        <input class="form-control w-50" name="category" placeholder="New category" required oninput="this.value=this.value.toLowerCase()">
+                        <input class="form-control w-50" name="category" placeholder="New category" required
+                            oninput="this.value=this.value.toLowerCase()">
                         <input class="form-control w-50" name="assignee" placeholder="New assignee" required>
 
                         <select class="form-control w-50" name="stat" required>
@@ -252,7 +318,8 @@ if (!isset($_SESSION['role'])) {
                                     <tr id="<?php echo htmlspecialchars($a['id']); ?>">
                                         <td><?php echo htmlspecialchars($a['id']); ?></td>
                                         <td><?php echo htmlspecialchars($a['asset']); ?></td>
-                                        <td><?php echo htmlspecialchars(strtolower(trim((string)($a['category'] ?? '')))); ?></td>
+                                        <td><?php echo htmlspecialchars(strtolower(trim((string) ($a['category'] ?? '')))); ?>
+                                        </td>
                                         <td><?php echo htmlspecialchars($a['assignee']); ?></td>
                                         <td><span class="badge <?php echo $badgeClass; ?>">
                                                 <?php echo htmlspecialchars($status); ?>
@@ -294,13 +361,14 @@ if (!isset($_SESSION['role'])) {
                             <option value="ALL" selected>ALL</option>
                             <?php foreach ($categories as $cat): ?>
                                 <option value="<?php echo htmlspecialchars($cat) ?>">
-                                    <?php echo htmlspecialchars($cat) ?></option>
+                                    <?php echo htmlspecialchars($cat) ?>
+                                </option>
 
                             <?php endforeach ?>
                         </select>
                     <?php endif ?>
 
-                     <select id="status">
+                    <select id="status">
                         <option value="ALL" selected>ALL</option>
                         <option value="Maintenance">Maintenance</option>
                         <option value="Active">Active</option>
@@ -392,8 +460,23 @@ if (!isset($_SESSION['role'])) {
     </div>
     <!-- right side bar end -->
     <script>
-        window.STATUS_COUNTS = <?php echo json_encode($chartStatusCounts, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+
+        window.STATUS_COUNTS = <?php echo json_encode($chartStatusCounts); ?>;
+
+        window.CATEGORY_COUNTS = <?php echo json_encode($categoryCounts); ?>;
+
+        window.ASSIGNEE_COUNTS = <?php echo json_encode($assigneeCounts); ?>;
+
     </script>
+
+
+
+
+
+
+
+
+
     <script src="dashboard.js?v=2"></script>
 </body>
 

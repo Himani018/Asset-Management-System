@@ -221,11 +221,15 @@ body {
   padding: 10px 12px;
   font-weight: bold;
   display: flex;
-  align-items: center;
+
   transition:
     transform 160ms ease,
     box-shadow 160ms ease,
     border-color 160ms ease;
+
+    h2{
+      margin-top: 30px;
+    }
 }
 
 .dashBox:hover {

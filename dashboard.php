@@ -17,6 +17,13 @@ $stmt->execute();
 $assets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //to get asset table
 
+$statusCounts = array_count_values(array_column($assets, 'stat'));
+$chartStatusCounts = [
+    $statusCounts['Active'] ?? 0,
+    $statusCounts['Retired'] ?? 0,
+    $statusCounts['Maintenance'] ?? 0,
+];
+
 // Unique categories for report filter (lowercased to keep consistent)
 $categories = [];
 foreach ($assets as $a) {
@@ -65,9 +72,11 @@ if (!isset($_SESSION['role'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
         integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha256-SERKgtTty1vsDxll+qzd4Y2cF9swY9BCq62i9wXJ9Uo=" crossorigin="anonymous"></script>
+
 </head>
 
-<body>
+<body>z
 
     <!-- Sidebar startttt-->
     <div class="sidebar">
@@ -86,7 +95,11 @@ if (!isset($_SESSION['role'])) {
 
 <!-- dashboard -->
         <div id="dash-sec">
-
+            <div id="dashWrap">
+            <p style=" position:relative; font-size:15px;" id="dashBadge">Asset Overview</p>
+            <h1>Dashboard</h1>
+            <p style="color: grey;">Quick insights about your inventory across status, category, Assignee.</p>
+        <!-- for logout -->
             <div class="profile" onclick="toggleMenu()">
                 <i class="fa-solid fa-user-circle fa-2x"></i>
                 <div class="profile-menu" id="menu">
@@ -94,8 +107,38 @@ if (!isset($_SESSION['role'])) {
                     <a href="#" onclick="logout()"><i class="fa fa-sign-out-alt"></i> Logout</a>
                 </div>
             </div>
-                     
-        </div>
+         <!--  -->
+                <div class="dashMetrics">
+                    <div class="dashBox">Total Asset</div>
+                    <div class="dashBox" style=" margin-left:230px ;">Active</div>
+                    <div class="dashBox" style=" margin-left:470px ;">Maintenence</div>
+                    <div class="dashBox" style=" margin-left:700px ;">Retired</div>
+                </div>
+                <div class="dashGraphs">
+                    <div class="graph" id="g1">
+                    <h3>Assets by status</h3>
+                    <div class="chartWrap">
+                        <canvas id="myChart" aria-label="chart" role="img"></canvas>
+                    </div>
+                      
+                    </div>
+                    <div class="graph" id="g2">
+
+                    <h3>Assets by category</h3>
+                    <div class="chartWrap">
+                        <canvas id="Chart" aria-label="chart" role="img"></canvas>
+                    </div>
+
+                    </div>
+                    <div class="graph graphWide" id="g3">
+                          <h3>Assets by Assignee</h3>
+                          <div class="chartWrap">
+                              <canvas id="AssigneeChart" aria-label="chart" role="img"></canvas>
+                          </div>
+                    </div>
+                </div>
+             </div>        
+         </div>
 <!-- asset sec -->
         <div id="asset-sec">
 
@@ -348,6 +391,9 @@ if (!isset($_SESSION['role'])) {
         </div>
     </div>
     <!-- right side bar end -->
+    <script>
+        window.STATUS_COUNTS = <?php echo json_encode($chartStatusCounts, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+    </script>
     <script src="dashboard.js?v=2"></script>
 </body>
 

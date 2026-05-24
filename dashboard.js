@@ -217,6 +217,120 @@ function edit(){
     })
 }
 
+const chartCanvas = document.getElementById("myChart");
+if (chartCanvas && window.Chart) {
+    const ctx = chartCanvas.getContext("2d");
+    new Chart(ctx, {
+        type: "doughnut",
+        data: {
+            labels:["Active","Retired","maintenence"],
+            datasets: [
+                {
+                    
+                    data: window.STATUS_COUNTS ?? [13, 15, 5],
+                    borderWidth: 3,
+                },
+            ],
+        },
 
+    
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 50,
+        right: 0,
+        top: 0,
+        bottom: 10,
+      },
+    },
+
+    animation: {
+      duration: 1000,
+      easing: "easeInOut",
+    },
+  },
+
+    });
+}
+
+
+const Canvas = document.getElementById("Chart");
+if (Canvas && window.Chart) {
+    const ctx = Canvas.getContext("2d");
+    new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels:["Active","Retired","maintenence"],
+            datasets: [
+                {
+                    
+                    data: [13, 15, 5],
+                    borderWidth: 3,
+                },
+            ],
+        },
+
+    
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 50,
+        right: 0,
+        top: 0,
+        bottom: 10,
+      },
+    },
+
+    animation: {
+      duration: 1000,
+      easing: "easeInOut",
+    },
+  },
+
+    });
+}
+
+
+const AssigneeChart = document.getElementById("AssigneeChart");
+if (AssigneeChart && window.Chart) {
+    const ctx = AssigneeChart.getContext("2d");
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels:["Active","Retired","maintenence"],
+            datasets: [
+                {
+                    
+                    data: [13, 15, 5],
+                    borderWidth: 3,
+                },
+            ],
+        },
+
+    
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 50,
+        right: 0,
+        top: 0,
+        bottom: 10,
+      },
+    },
+
+    animation: {
+      duration: 1000,
+      easing: "easeInOut",
+    },
+  },
+
+    });
+}
 
 

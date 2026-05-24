@@ -10,8 +10,9 @@ A simple system to track, manage, and maintain organizational assets.
 
 ## Tech Stack
 - Frontend: HTML, CSS, JS
-- Backend: Node.js / Django / Spring Boot
-- Database: MySQL / PostgreSQL / MongoDB
+- Backend: PHP
+- Database: MySQL
+- Library: chart.js
 
 ## Setup
 1. Clone the repository:

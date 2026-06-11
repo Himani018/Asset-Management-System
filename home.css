@@ -269,3 +269,17 @@ body{
           background: linear-gradient(to right, #4facfe, #00f2fe);
      }
 }
+@media screen and (max-width :600px) {
+    .top{
+    position: relative;
+    background-color: #001f5b;
+    color: white;
+    text-align: center;
+    padding: 5%;
+    height: 25%;
+    width: 100%;
+    font-size: large;
+    z-index: 1;
+    background-size: cover;  
+    }
+}

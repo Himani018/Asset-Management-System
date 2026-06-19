@@ -14,6 +14,8 @@ A simple system to track, manage, and maintain organizational assets.
 - Database: MySQL
 - Library: chart.js
 
+## Live Demo
+🌐 [https://asset-management-system-x02y.onrender.com/](https://asset-management-system-x02y.onrender.com/)
 ## Setup
 1. Clone the repository:
    ```bash
